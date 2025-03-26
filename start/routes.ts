@@ -14,7 +14,9 @@ router.group(() => {
   router.post('/signup', [AuthController, 'signup'])
   router.post('/login', [AuthController, 'login'])
   router.post('/forgot-password', [AuthController, 'forgotPassword'])
-  router.post('/reset-password', [AuthController, 'resetPassword'])
+  router.post('/reset-password', [AuthController, 'resetPassword']),
+  router.post('/verify-email', [AuthController, 'verifyEmail'])
+  router.post('/resend-verification-code', [AuthController, 'resendVerificationCode'])
   
 }).prefix('/api/auth')
 

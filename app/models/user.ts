@@ -11,29 +11,49 @@ const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
 })
 
 export default class User extends compose(BaseModel, AuthFinder) {
-  @column({ isPrimary: true })
-  declare id: number
+    @column({ isPrimary: true })
+    declare id: number
 
-  @column({columnName: "full_name"})
-  declare fullName: string | null
+    @column({columnName: "full_name"})
+    declare fullName: string | null
 
-  @column()
-  declare firstName: string | null
+    @column()
+    declare firstName: string | null
 
-  @column()
-  declare lastName: string | null
+    @column()
+    declare lastName: string | null
 
-  @column()
-  declare email: string
+    @column()
+    declare email: string
 
-  @column({ serializeAs: null })
-  declare password: string
+    @column({ serializeAs: null })
+    declare password: string
 
-  @column.dateTime({ autoCreate: true })
-  declare createdAt: DateTime
+    // New columns for password reset
+    @column()
+    declare resetPasswordToken: string | null
 
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
-  declare updatedAt: DateTime | null
+    @column.dateTime()
+    declare resetPasswordExpires: DateTime | null
+
+
+    // New columns for email verification
+    @column()
+    declare emailVerificationCode: string | null
+  
+    @column.dateTime()
+    declare emailVerificationCodeExpires: DateTime | null
+  
+    @column()
+    declare isEmailVerified: boolean
+  
+    @column.dateTime({ autoCreate: true })
+    declare createdAt: DateTime
+  
+    @column.dateTime({ autoCreate: true, autoUpdate: true })
+    declare updatedAt: DateTime | null
 
   static accessTokens = DbAccessTokensProvider.forModel(User)
 }
+
+

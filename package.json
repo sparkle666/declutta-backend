@@ -55,10 +55,12 @@
     "@adonisjs/core": "^6.17.2",
     "@adonisjs/cors": "^2.2.1",
     "@adonisjs/lucid": "^21.6.0",
-    "@vinejs/vine": "^3.0.0",
+    "@adonisjs/mail": "^9.2.2",
+    "@vinejs/vine": "^3.0.1",
     "adonis-autoswagger": "^3.68.0",
     "better-sqlite3": "^11.9.1",
     "luxon": "^3.6.0",
+    "nodemailer": "^6.10.0",
     "reflect-metadata": "^0.2.2"
   },
   "hotHook": {

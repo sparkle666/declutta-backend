@@ -8,7 +8,9 @@ import router from '@adonisjs/core/services/router'
 
 const AuthController = () => import('#controllers/auth_controller')
 
-
+router.get("/", () => {
+  return { message: "declutta backend" };
+});
 
 router.group(() => {
   router.post('/signup', [AuthController, 'signup'])
@@ -27,7 +29,7 @@ router.get("/swagger", async () => {
 
 // Renders Swagger-UI and passes YAML-output of /swagger
 router.get("/docs", async () => {
-  return AutoSwagger.default.ui("/swagger", swagger);
-  // return AutoSwagger.default.scalar("/swagger"); 
+  // return AutoSwagger.default.ui("/swagger", swagger);
+  return AutoSwagger.default.scalar("/swagger"); 
   // return AutoSwagger.default.rapidoc("/swagger", "view"); 
 });

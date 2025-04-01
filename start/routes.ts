@@ -71,6 +71,8 @@ router.group(() => {
   router.delete('/wants/:id', [WantsController, 'destroy'])
 })
   .prefix('/api')
+  // .use(middleware.auth({ guard: 'api' }))  use this to ensure the auth middleware runs on these routes
+
 
 // Swagger routes
 router.get('/swagger', async () => {

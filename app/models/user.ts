@@ -57,7 +57,7 @@ export default class User extends compose(BaseModel, AuthFinder) {
   declare updatedAt: DateTime | null
 
   // ✅ Fixed: `import type` prevents TS error
-  @hasMany(() => Product, { foreignKey: 'listed_by' })
+  @hasMany(() => Product, { foreignKey: 'listedBy' })
   public products!: HasMany<typeof Product>
 
   @hasMany(() => Review, { foreignKey: 'user_id' })

@@ -1,32 +1,33 @@
-import type { HttpContext } from '@adonisjs/core/http'
+// app/controllers/UsersController.ts
+import User from '#models/user'
+import { HttpContext } from '@adonisjs/core/http'
+
+
 
 export default class UsersController {
-
-/**
-   * @index
-   * @operationId getUsers
-   * @summary This is a sample decription
-   * @description Returns array of producs and it's relations
-   * @tag Users
-   */
-    index (context: HttpContext) {
-
-        console.log(context)
-
-        return [
-            {
-                id: 1,
-                username: "six"
-            },
-            {
-                id: 2,
-                username: "James"
-            }
-        ]
+    // Get all users with related products and images
+    public async index({ response }: HttpContext) {
+      try {
+        const users = await User.query()
+          .select('id', 'fullName', 'firstName', 'lastName', 'email', 'isEmailVerified', 'createdAt')
+          .preload('products', (productQuery) => {
+            productQuery.select('id', 'productName', 'productPrice', 'productLocation')
+          })
+          .preload('products', (productQuery) => {
+            productQuery
+              .select('id', 'productName', 'productPrice', 'productLocation')
+              .preload('images', (imageQuery) => {
+                imageQuery.select('id', 'imageUrl')
+              })
+          })
+  
+        return response.json(users)
+      } catch (error) {
+        return response.status(500).json({
+          status: 'error',
+          message: 'Failed to retrieve users.',
+          error: error.message
+        })
+      }
     }
-
-    
-    show ({params}: { params: { id: number } }) {
-        return {id: params.id}
-    }
-}
+  }

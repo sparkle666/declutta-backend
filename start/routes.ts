@@ -8,6 +8,7 @@ const ReviewsController = () => import('#controllers/reviews_controller')
 const ImagesController = () => import('#controllers/images_controller')
 const FavouriteProductsController = () => import('#controllers/favourite_products_controller')
 const WantsController = () => import('#controllers/wants_controller')
+const UsersController = () => import('#controllers/users_controller')
 
 
 // Controller imports (lazy-loaded)
@@ -21,10 +22,12 @@ router.get('/', () => {
 // Public routes (no auth required)
 router.group(() => {
   router.get('/categories', [CategoriesController, 'index'])
+  router.get('/categories/:id', [CategoriesController, 'show'])
   router.get('/products', [ProductsController, 'index'])
   router.get('/products/:id', [ProductsController, 'show'])
   router.get('/reviews', [ReviewsController, 'index'])
   router.get('/reviews/:id', [ReviewsController, 'show'])
+  router.get('/users', [UsersController, 'index'])
 }).prefix('/api')
 
 // Auth routes (public)

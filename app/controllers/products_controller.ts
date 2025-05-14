@@ -3,6 +3,7 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import { productValidator } from '#validators/ProductValidator'
 import Product from '#models/product'
+// import UnauthorizedErrorException from '#exceptions/unauthorized_error_exception'
 
 export default class ProductsController {
   public async index({ response }: HttpContext) {
@@ -11,8 +12,16 @@ export default class ProductsController {
   }
 
   public async store({ request, response, auth }: HttpContext) {
+    const user = auth.user
+    if (!user) {
+      return response.unauthorized({
+        status: 'error',
+        message: 'You must be logged in to access this resource.',
+        code: 'UNAUTHORIZED'
+      })
+    }
+  
     const data = await request.validateUsing(productValidator)
-    const user = auth.user!
     const product = await Product.create({ ...data, listedBy: user.id })
     return response.created(product)
   }

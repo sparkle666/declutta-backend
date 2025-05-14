@@ -1,3 +1,4 @@
+// app/models/product.ts
 import { DateTime } from 'luxon'
 import { BaseModel, column, belongsTo, hasMany, manyToMany } from '@adonisjs/lucid/orm'
 import Category from './category.js'
@@ -21,7 +22,7 @@ export default class Product extends BaseModel {
   @column()
   declare productStatus: 'available' | 'sold' | 'in stock'
 
-  @column()
+  @column({ columnName: 'listed_by' }) // ✅ This makes sure it matches the relationship
   declare listedBy: number
 
   @column()
@@ -51,7 +52,7 @@ export default class Product extends BaseModel {
   declare category: BelongsTo<typeof Category>
 
   @belongsTo(() => User, {
-    foreignKey: 'listedBy',
+    foreignKey: 'listed_by', // ✅ Make sure this matches the column name
   })
   declare listedByUser: BelongsTo<typeof User>
 

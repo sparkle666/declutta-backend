@@ -42,6 +42,10 @@ router.group(() => {
 
 // Protected routes (require authentication)
 router.group(() => {
+  // User routes                                               
+  router.put('/users/:id', [UsersController, 'update'])
+  router.get('/users/:id', [UsersController, 'getUserById'])
+
   // Categories
   router.post('/categories', [CategoriesController, 'store'])
   router.put('/categories/:id', [CategoriesController, 'update'])

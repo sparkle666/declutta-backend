@@ -1,6 +1,8 @@
 import AutoSwagger from 'adonis-autoswagger'
 import swagger from '#config/swagger'
 import router from '@adonisjs/core/services/router'
+import { middleware } from './kernel.js'
+
 
 const CategoriesController = () => import('#controllers/categories_controller')
 const ProductsController = () => import('#controllers/products_controller')
@@ -78,7 +80,7 @@ router.group(() => {
   router.delete('/wants/:id', [WantsController, 'destroy'])
 })
   .prefix('/api')
-  // .use(middleware.auth({ guard: 'api' }))  use this to ensure the auth middleware runs on these routes
+  .use(middleware.auth({ guards: ['api'] }))  // use this to ensure the auth middleware runs on these routes
 
 
 // Swagger routes

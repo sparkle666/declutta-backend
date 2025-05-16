@@ -1,0 +1,32 @@
+### Get all wants
+GET http://localhost:3333/api/wants
+Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+
+### Create a new want
+POST http://localhost:3333/api/wants
+Content-Type: application/json
+Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+
+{
+  "name": "I want a new phone",
+  "keywords": ["phone", "electronics", "mobile"]
+}
+
+### Get a want by ID
+GET http://localhost:3333/api/wants/1
+Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+
+### Update a want by ID
+PUT http://localhost:3333/api/wants/1
+Content-Type: application/json
+Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+
+{
+  "name": "Updated want name",
+  "keywords": ["updated", "keyword"],
+  "userId": 1
+}
+
+### Delete a want by ID
+DELETE http://localhost:3333/api/wants/1
+Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM

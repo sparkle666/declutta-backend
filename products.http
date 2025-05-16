@@ -1,0 +1,45 @@
+### Get all products
+GET http://localhost:3333/api/products
+Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+
+### Create a new product
+POST http://localhost:3333/api/products
+Content-Type: application/json
+Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+
+{
+  "productName": "Sample Product",
+  "productLocation": "Lagos",
+  "productStatus": "available",
+  "listedBy": 1,
+  "productPrice": 99.99,
+  "productDetails": "A test product",
+  "isFree": false,
+  "isForSale": true,
+  "categoryId": 1
+}
+
+### Get a product by ID
+GET http://localhost:3333/api/products/1
+Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+
+### Update a product by ID
+PUT http://localhost:3333/api/products/1
+Content-Type: application/json
+Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+
+{
+  "productName": "Updated Product Name",
+  "productLocation": "Abuja",
+  "productStatus": "sold",
+  "listedBy": 1,
+  "productPrice": 79.99,
+  "productDetails": "Updated description",
+  "isFree": false,
+  "isForSale": true,
+  "categoryId": 1
+}
+
+### Delete a product by ID
+DELETE http://localhost:3333/api/products/1
+Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM

@@ -1,0 +1,21 @@
+### Get all users
+GET http://localhost:3333/api/users
+Authorization: Bearer dummy_token
+
+### Get a user by ID
+GET http://localhost:3333/api/users/1
+Authorization: Bearer dummy_token
+
+### Update a user by ID
+PUT http://localhost:3333/api/users/1
+Content-Type: application/json
+Authorization: Bearer dummy_token
+
+{
+  "email": "updateduser@example.com",
+  "password": "newpassword123",
+  "fullName": "Updated User Name",
+  "firstName": "Updated",
+  "lastName": "User",
+  "isEmailVerified": true
+}

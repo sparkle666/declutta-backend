@@ -1,0 +1,16 @@
+### Get all favourite products
+GET http://localhost:3333/api/favourites
+Authorization: Bearer dummy_token
+
+### Add a product to favourites
+POST http://localhost:3333/api/favourites
+Content-Type: application/json
+Authorization: Bearer dummy_token
+
+{
+  "productId": 1
+}
+
+### Remove a product from favourites
+DELETE http://localhost:3333/api/favourites/1
+Authorization: Bearer dummy_token

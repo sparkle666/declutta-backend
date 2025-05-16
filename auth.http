@@ -1,0 +1,64 @@
+### Signup
+POST http://localhost:3333/api/auth/signup
+Content-Type: application/json
+
+{
+    "email": "sparkdkiller@gmail.com",
+    "password": "password123",
+    "fullName": "Test User",
+    "firstName": "Test",
+    "lastName": "User"
+}
+
+###
+
+### Verify Email
+POST http://localhost:3333/api/auth/verify-email
+Content-Type: application/json
+
+{
+    "email": "sparkdkiller@gmail.com",
+    "code": "9501"
+}
+
+###
+
+### Login
+POST http://localhost:3333/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "sparkdkiller@gmail.com",
+    "password": "password123"
+}
+
+###
+
+### Resend Verification Code
+POST http://localhost:3333/api/auth/resend-verification-code
+Content-Type: application/json
+
+{
+    "email": "sparkdkiller@gmail.com"
+}
+
+###
+
+### Forgot Password
+POST http://localhost:3333/api/auth/forgot-password
+Content-Type: application/json
+
+{
+    "email": "sparkdkiller@gmail.com"
+}
+
+###
+
+### Reset Password
+POST http://localhost:3333/api/auth/reset-password
+Content-Type: application/json
+
+{
+    "token": "reset-token",
+    "password": "newpassword123"
+}

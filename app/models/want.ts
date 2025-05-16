@@ -12,7 +12,10 @@ export default class Want extends BaseModel {
   @column()
   declare name: string
 
-  @column()
+  @column({
+  prepare: (value: string[]) => JSON.stringify(value),
+  consume: (value: string) => value ? JSON.parse(value) : [],
+  })
   declare keywords: string[]
 
   @column()

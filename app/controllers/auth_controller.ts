@@ -13,8 +13,10 @@ import { randomBytes } from 'node:crypto'
 import { DateTime } from 'luxon'
 import vine from '@vinejs/vine'
 
+import { inject } from '@adonisjs/core'
 
 
+@inject()
 export default class AuthController {
 
    /**
@@ -84,6 +86,12 @@ export default class AuthController {
         })
       }
 
+      if (user.isEmailVerified) {
+        return response.badRequest({ 
+          message: 'Email already verified' 
+        })
+      }
+
       // Mark email as verified
       user.isEmailVerified = true
       user.emailVerificationCode = null
@@ -144,6 +152,12 @@ export default class AuthController {
       if (!user) {
         return response.notFound({ 
           message: 'User not found' 
+        })
+      }
+
+      if (user.isEmailVerified) {
+        return response.badRequest({ 
+          message: 'Email already verified' 
         })
       }
 

@@ -1,0 +1,24 @@
+### Get all categories
+GET http://localhost:3333/api/categories
+
+### Create a new category
+POST http://localhost:3333/api/categories
+Content-Type: application/json
+
+{
+  "categoryName": "Electronics"
+}
+
+### Get a category by ID
+GET http://localhost:3333/api/categories/2
+
+### Update a category by ID
+PUT http://localhost:3333/api/categories/2
+Content-Type: application/json
+
+{
+  "categoryName": "Updated Category Name"
+}
+
+### Delete a category by ID
+DELETE http://localhost:3333/api/categories/1

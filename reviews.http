@@ -1,0 +1,33 @@
+### Get all reviews
+GET http://localhost:3333/api/reviews
+Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+
+### Create a new review
+POST http://localhost:3333/api/reviews
+Content-Type: application/json
+Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+
+{
+  "productId": 1,
+  "userId": 1,
+  "rating": 5,
+  "comment": "Great product!"
+}
+
+### Get a review by ID
+GET http://localhost:3333/api/reviews/1
+Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+
+### Update a review by ID
+PUT http://localhost:3333/api/reviews/1
+Content-Type: application/json
+Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+
+{
+  "rating": 4,
+  "comment": "Updated review comment."
+}
+
+### Delete a review by ID
+DELETE http://localhost:3333/api/reviews/1
+Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM

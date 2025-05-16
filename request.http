@@ -1,0 +1,49 @@
+POST http://127.0.0.1:3333/api/products
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="productName"
+
+macbook pro 2029
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="productLocation"
+
+lagos
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="productStatus"
+
+in stock
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="listedBy"
+
+1
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="productPrice"
+
+10
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="isFree"
+
+0
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="isForSale"
+
+1
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="categoryId"
+
+1
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="leetcode.png"
+Content-Type: image/png
+
+< ./leetcode.png
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="ima.png"
+Content-Type: image/png
+
+< ./ima.png
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW--

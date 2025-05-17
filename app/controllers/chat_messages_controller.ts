@@ -3,6 +3,33 @@ import ChatMessage from '#models/chat_message'
 import User from '#models/user'
 import { chatMessageValidator } from '#validators/ChatMessageValidator'
 
+/**
+ * ChatMessagesController handles user-to-user chat messaging.
+ *
+ * - All endpoints require authentication.
+ * - Users can send and receive text messages with each other.
+ * - All operations are scoped to the authenticated user.
+ *
+ * Endpoints:
+ *   GET    /api/chats/conversations      - List all conversations (latest message per user)
+ *   GET    /api/chats?userId=2          - Get all messages between authenticated user and another user
+ *   POST   /api/chats                   - Send a new message
+ *   POST   /api/chats/mark-as-read      - Mark all messages from a user as read
+ *
+ * Request body for sending a message:
+ *   {
+ *     receiverId: number,   // Required, user ID of the recipient
+ *     message: string       // Required, 1-1000 chars
+ *   }
+ *
+ * Request body for mark-as-read:
+ *   {
+ *     userId: number        // Required, user ID whose messages to mark as read
+ *   }
+ *
+ * Responses:
+ *   200 OK, 201 Created, 400 Bad Request, 401 Unauthorized, 404 Not Found
+ */
 export default class ChatMessagesController {
   // List all conversations for the authenticated user (latest message per user)
   public async conversations({ auth, response }: HttpContext) {

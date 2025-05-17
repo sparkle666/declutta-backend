@@ -15,6 +15,7 @@ const ChatMessagesController = () => import('#controllers/chat_messages_controll
 const BankAccountsController = () => import('#controllers/bank_accounts_controller')
 const CardsController = () => import('#controllers/cards_controller')
 const ShippingAddressesController = () => import('#controllers/shipping_addresses_controller')
+const NotificationsController = () => import('#controllers/notifications_controller')
 
 
 // Controller imports (lazy-loaded)
@@ -109,6 +110,13 @@ router.group(() => {
   router.get('/shipping-addresses/:id', [ShippingAddressesController, 'show'])
   router.put('/shipping-addresses/:id', [ShippingAddressesController, 'update'])
   router.delete('/shipping-addresses/:id', [ShippingAddressesController, 'destroy'])
+
+  // Notifications
+  router.get('/notifications', [NotificationsController, 'index'])
+  router.get('/notifications/unread', [NotificationsController, 'unread'])
+  router.post('/notifications/:id/read', [NotificationsController, 'markAsRead'])
+  router.post('/notifications', [NotificationsController, 'store'])
+  router.delete('/notifications/:id', [NotificationsController, 'destroy'])
 })
   .prefix('/api')
   .use(middleware.auth({ guards: ['api'] }))  // use this to ensure the auth middleware runs on these routes

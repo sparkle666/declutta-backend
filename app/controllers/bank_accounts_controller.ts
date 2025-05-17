@@ -1,3 +1,29 @@
+/**
+ * BankAccountsController handles CRUD operations for user bank accounts.
+ *
+ * - All endpoints require authentication.
+ * - Each user can have multiple bank accounts.
+ * - All operations are scoped to the authenticated user.
+ *
+ * Endpoints:
+ *   GET    /api/bank-accounts           - List all bank accounts for the user
+ *   POST   /api/bank-accounts           - Create a new bank account
+ *   GET    /api/bank-accounts/:id       - Get a single bank account by ID
+ *   PUT    /api/bank-accounts/:id       - Update a bank account by ID
+ *   DELETE /api/bank-accounts/:id       - Delete a bank account by ID
+ *
+ * Request body for create/update:
+ *   {
+ *     bankName: string,         // Required, min 2 chars
+ *     accountNumber: string,    // Required, min 6 chars
+ *     homeAddress?: string,     // Optional
+ *     postalCode?: string       // Optional
+ *   }
+ *
+ * Responses:
+ *   200 OK, 201 Created, 400 Bad Request, 401 Unauthorized, 404 Not Found
+ */
+
 import type { HttpContext } from '@adonisjs/core/http'
 import BankAccount from '#models/bank_account'
 import { bankAccountValidator } from '#validators/BankAccountValidator'

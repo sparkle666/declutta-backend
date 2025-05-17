@@ -1,0 +1,36 @@
+### Get all notifications
+GET http://localhost:3333/api/notifications
+Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+
+### Get unread notifications
+GET http://localhost:3333/api/notifications/unread
+Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+
+### Mark a notification as read
+POST http://localhost:3333/api/notifications/1/read
+Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+
+### Create a universal notification (admin/system only)
+POST http://localhost:3333/api/notifications
+Content-Type: application/json
+Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+
+{
+  "title": "System Update",
+  "message": "We have updated our terms of service."
+}
+
+### Create a personal notification (admin/system only)
+POST http://localhost:3333/api/notifications
+Content-Type: application/json
+Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+
+{
+  "userId": 2,
+  "title": "Your item was delivered",
+  "message": "Your charity listing has been delivered to John Adams."
+}
+
+### Delete a notification (admin/system only)
+DELETE http://localhost:3333/api/notifications/1
+Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM

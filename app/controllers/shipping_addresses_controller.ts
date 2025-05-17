@@ -1,3 +1,28 @@
+/**
+ * ShippingAddressesController handles CRUD operations for user shipping addresses.
+ *
+ * - All endpoints require authentication.
+ * - Each user can have multiple shipping addresses, but only one can be default.
+ * - All operations are scoped to the authenticated user.
+ *
+ * Endpoints:
+ *   GET    /api/shipping-addresses           - List all shipping addresses for the user
+ *   POST   /api/shipping-addresses           - Create a new shipping address
+ *   GET    /api/shipping-addresses/:id       - Get a single shipping address by ID
+ *   PUT    /api/shipping-addresses/:id       - Update a shipping address by ID
+ *   DELETE /api/shipping-addresses/:id       - Delete a shipping address by ID
+ *
+ * Request body for create/update:
+ *   {
+ *     address: string,         // Required, min 5 chars
+ *     postalCode: string,      // Required, min 3 chars
+ *     isDefault?: boolean      // Optional, set as default address
+ *   }
+ *
+ * Responses:
+ *   200 OK, 201 Created, 400 Bad Request, 401 Unauthorized, 404 Not Found
+ */
+
 import type { HttpContext } from '@adonisjs/core/http'
 import ShippingAddress from '#models/shipping_address'
 import { shippingAddressValidator } from '#validators/ShippingAddressValidator'

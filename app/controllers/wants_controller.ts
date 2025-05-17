@@ -1,4 +1,26 @@
-// import type { HttpContext } from '@adonisjs/core/http'
+/**
+ * WantsController handles CRUD operations for user wants (wish list items).
+ *
+ * - All endpoints require authentication.
+ * - Each user can have multiple wants.
+ * - All operations are scoped to the authenticated user.
+ *
+ * Endpoints:
+ *   GET    /api/wants           - List all wants for the user
+ *   POST   /api/wants           - Create a new want
+ *   GET    /api/wants/:id       - Get a single want by ID
+ *   PUT    /api/wants/:id       - Update a want by ID
+ *   DELETE /api/wants/:id       - Delete a want by ID
+ *
+ * Request body for create/update:
+ *   {
+ *     name: string,         // Required, name of the want
+ *     keywords: string[],   // Required, array of keywords
+ *   }
+ *
+ * Responses:
+ *   200 OK, 201 Created, 400 Bad Request, 401 Unauthorized, 404 Not Found
+ */
 
 import type { HttpContext } from '@adonisjs/core/http'
 import { wantValidator } from '#validators/WantValidator'

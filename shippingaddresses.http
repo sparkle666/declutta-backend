@@ -8,7 +8,7 @@ Content-Type: application/json
 Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
 
 {
-  "address": "Lagos Nigeria, 20341",
+  "address": "Aje Lagos Nigeria, 20341",
   "postalCode": "20341",
   "isDefault": true
 }

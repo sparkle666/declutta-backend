@@ -1,0 +1,33 @@
+### Get all shipping addresses for the authenticated user
+GET http://localhost:3333/api/shipping-addresses
+Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+
+### Create a new shipping address
+POST http://localhost:3333/api/shipping-addresses
+Content-Type: application/json
+Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+
+{
+  "address": "Lagos Nigeria, 20341",
+  "postalCode": "20341",
+  "isDefault": true
+}
+
+### Get a shipping address by ID
+GET http://localhost:3333/api/shipping-addresses/1
+Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+
+### Update a shipping address by ID
+PUT http://localhost:3333/api/shipping-addresses/1
+Content-Type: application/json
+Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+
+{
+  "address": "Abuja Nigeria, 10001",
+  "postalCode": "10001",
+  "isDefault": false
+}
+
+### Delete a shipping address by ID
+DELETE http://localhost:3333/api/shipping-addresses/1
+Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM

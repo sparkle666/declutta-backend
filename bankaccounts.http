@@ -1,0 +1,35 @@
+### Get all bank accounts for the authenticated user
+GET http://localhost:3333/api/bank-accounts
+Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+
+### Create a new bank account
+POST http://localhost:3333/api/bank-accounts
+Content-Type: application/json
+Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+
+{
+  "bankName": "Union Bank",
+  "accountNumber": "1234567812",
+  "homeAddress": "123 Main St, Lagos",
+  "postalCode": "100001"
+}
+
+### Get a single bank account by ID
+GET http://localhost:3333/api/bank-accounts/1
+Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+
+### Update a bank account by ID
+PUT http://localhost:3333/api/bank-accounts/1
+Content-Type: application/json
+Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+
+{
+  "bankName": "GTBank",
+  "accountNumber": "0987654321",
+  "homeAddress": "456 New St, Abuja",
+  "postalCode": "900001"
+}
+
+### Delete a bank account by ID
+DELETE http://localhost:3333/api/bank-accounts/1
+Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM

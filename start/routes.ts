@@ -11,6 +11,10 @@ const ImagesController = () => import('#controllers/images_controller')
 const FavouriteProductsController = () => import('#controllers/favourite_products_controller')
 const WantsController = () => import('#controllers/wants_controller')
 const UsersController = () => import('#controllers/users_controller')
+const ChatMessagesController = () => import('#controllers/chat_messages_controller')
+const BankAccountsController = () => import('#controllers/bank_accounts_controller')
+const CardsController = () => import('#controllers/cards_controller')
+const ShippingAddressesController = () => import('#controllers/shipping_addresses_controller')
 
 
 // Controller imports (lazy-loaded)
@@ -78,6 +82,33 @@ router.group(() => {
   router.get('/wants/:id', [WantsController, 'show'])
   router.put('/wants/:id', [WantsController, 'update'])
   router.delete('/wants/:id', [WantsController, 'destroy'])
+
+  // Chats
+  router.get('/chats/conversations', [ChatMessagesController, 'conversations'])
+  router.get('/chats', [ChatMessagesController, 'index']) // ?userId=otherUserId
+  router.post('/chats', [ChatMessagesController, 'store'])
+  router.post('/chats/mark-as-read', [ChatMessagesController, 'markAsRead'])
+
+  // Bank Accounts
+  router.get('/bank-accounts', [BankAccountsController, 'index'])
+  router.post('/bank-accounts', [BankAccountsController, 'store'])
+  router.get('/bank-accounts/:id', [BankAccountsController, 'show'])
+  router.put('/bank-accounts/:id', [BankAccountsController, 'update'])
+  router.delete('/bank-accounts/:id', [BankAccountsController, 'destroy'])
+
+  // Cards
+  router.get('/cards', [CardsController, 'index'])
+  router.post('/cards', [CardsController, 'store'])
+  router.get('/cards/:id', [CardsController, 'show'])
+  router.put('/cards/:id', [CardsController, 'update'])
+  router.delete('/cards/:id', [CardsController, 'destroy'])
+
+  // Shipping Addresses
+  router.get('/shipping-addresses', [ShippingAddressesController, 'index'])
+  router.post('/shipping-addresses', [ShippingAddressesController, 'store'])
+  router.get('/shipping-addresses/:id', [ShippingAddressesController, 'show'])
+  router.put('/shipping-addresses/:id', [ShippingAddressesController, 'update'])
+  router.delete('/shipping-addresses/:id', [ShippingAddressesController, 'destroy'])
 })
   .prefix('/api')
   .use(middleware.auth({ guards: ['api'] }))  // use this to ensure the auth middleware runs on these routes

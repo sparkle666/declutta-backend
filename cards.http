@@ -1,0 +1,37 @@
+### Get all cards for the authenticated user
+GET http://localhost:3333/api/cards
+Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+
+### Create a new card
+POST http://localhost:3333/api/cards
+Content-Type: application/json
+Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+
+{
+  "cardNumber": "1234567890123764",
+  "cardHolderName": "John Doe",
+  "bankName": "Visa",
+  "expirationDate": "12/29",
+  "isDefault": true
+}
+
+### Get a card by ID
+GET http://localhost:3333/api/cards/1
+Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+
+### Update a card by ID
+PUT http://localhost:3333/api/cards/1
+Content-Type: application/json
+Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+
+{
+  "cardNumber": "1234567890123456",
+  "cardHolderName": "Jane Doe",
+  "bankName": "Visa",
+  "expirationDate": "12/29",
+  "isDefault": false
+}
+
+### Delete a card by ID
+DELETE http://localhost:3333/api/cards/1
+Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM

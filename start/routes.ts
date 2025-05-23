@@ -17,6 +17,7 @@ const CardsController = () => import('#controllers/cards_controller')
 const ShippingAddressesController = () => import('#controllers/shipping_addresses_controller')
 const NotificationsController = () => import('#controllers/notifications_controller')
 const BackupsController = () => import('#controllers/backups_controller')
+const CheckoutController = () => import('#controllers/checkout_controller')
 
 
 // Controller imports (lazy-loaded)
@@ -122,6 +123,11 @@ router.group(() => {
   router.post('/notifications/:id/read', [NotificationsController, 'markAsRead'])
   router.post('/notifications', [NotificationsController, 'store'])
   router.delete('/notifications/:id', [NotificationsController, 'destroy'])
+
+  // Checkout
+  router.post('/checkout', [CheckoutController, 'checkout'])
+  router.post('/paystack/webhook', [CheckoutController, 'paystackWebhook'])
+  router.get('/orders/:id', [CheckoutController, 'show'])
 
   // Backup DB
 })

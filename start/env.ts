@@ -21,11 +21,15 @@ export default await Env.create(new URL('../', import.meta.url), {
   DB_CONNECTION: Env.schema.enum(['sqlite', 'mysql', 'pg'] as const),
   DB_DATABASE: Env.schema.string(),
 
+
   /*
   |----------------------------------------------------------
   | Variables for configuring the mail package
   |----------------------------------------------------------
   */
   SMTP_HOST: Env.schema.string(),
-  SMTP_PORT: Env.schema.string()
+  SMTP_PORT: Env.schema.string(),
+
+  BLOB_READ_WRITE_TOKEN: Env.schema.string(),
+
 })

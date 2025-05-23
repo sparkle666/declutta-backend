@@ -19,6 +19,65 @@ Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0I
   "categoryId": 1
 }
 
+### Create a new product with images
+POST http://localhost:3333/api/products
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="productName"
+
+Sample Product
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="productLocation"
+
+Lagos
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="productStatus"
+
+available
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="listedBy"
+
+1
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="productPrice"
+
+99.99
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="productDetails"
+
+A test product
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="isFree"
+
+false
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="isForSale"
+
+true
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="categoryId"
+
+1
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="condition"
+
+used
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="shipping.png"
+Content-Type: image/png
+
+< ./shipping.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="chat.png"
+Content-Type: image/png
+
+< ./chat.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+
+
 ### Get a product by ID
 GET http://localhost:3333/api/products/1
 Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM

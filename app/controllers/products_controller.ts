@@ -3,6 +3,10 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import { productValidator } from '#validators/ProductValidator'
 import Product from '#models/product'
+import { put } from '@vercel/blob'
+
+import { readFile } from 'node:fs/promises'
+
 // import UnauthorizedErrorException from '#exceptions/unauthorized_error_exception'
 
 export default class ProductsController {
@@ -31,16 +35,49 @@ export default class ProductsController {
       size: '5mb', // Maximum file size (adjust as needed)
       extnames: ['jpg', 'jpeg', 'png', 'gif'], // Allowed file types
     })
-  
-    if (images) {
+
+    if (!images || images.length === 0) {
+      return response.badRequest({
+        status: 'error',
+        message: 'At least one image is required to create a product.'
+      })
+    }
+
+    const uploadedImageUrls: string[] = []
+    const fs = await import('node:fs/promises')
+    try {
       for (const image of images) {
-        await image.move('./uploads/products') // Save image manually in a local folder
-  
+        // Move the file to a temporary location first
+        await image.move('./tmp')
+        // Read the file as buffer
+        const fileBuffer = await readFile(image.filePath!)
+        // Upload to Vercel Blob using buffer
+        const { url } = await put(`product/${image.fileName}`, fileBuffer, {
+          access: 'public',
+          contentType: image.type + '/' + image.subtype,
+          token: process.env.BLOB_READ_WRITE_TOKEN, // Explicitly pass the token
+          addRandomSuffix: true,
+        })
         // Save image details in database
         await product.related('images').create({
-          imageUrl: `/public/products/${image.fileName}`,
+          imageUrl: url,
         })
+        uploadedImageUrls.push(url)
+        // Clean up the tmp file
+        await fs.unlink(image.filePath!)
       }
+    } catch (error) {
+      // Clean up any tmp files that may still exist
+      for (const image of images) {
+        try { await fs.unlink(image.filePath!) } catch {}
+      }
+      // Delete the product if it was created but images failed
+      await product.delete()
+      return response.internalServerError({
+        status: 'error',
+        message: 'Image upload failed. Product was not created.',
+        error: error.message || error.toString(),
+      })
     }
     
       // Reload the product with images relationship

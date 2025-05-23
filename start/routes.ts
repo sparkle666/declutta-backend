@@ -16,6 +16,7 @@ const BankAccountsController = () => import('#controllers/bank_accounts_controll
 const CardsController = () => import('#controllers/cards_controller')
 const ShippingAddressesController = () => import('#controllers/shipping_addresses_controller')
 const NotificationsController = () => import('#controllers/notifications_controller')
+const BackupsController = () => import('#controllers/backups_controller')
 
 
 // Controller imports (lazy-loaded)
@@ -35,6 +36,9 @@ router.group(() => {
   router.get('/reviews', [ReviewsController, 'index'])
   router.get('/reviews/:id', [ReviewsController, 'show'])
   router.get('/users', [UsersController, 'index'])
+  
+  router.post('/backup-db', [BackupsController, 'backupDb'])
+  
 }).prefix('/api')
 
 // Auth routes (public)
@@ -45,6 +49,7 @@ router.group(() => {
   router.post('/reset-password', [AuthController, 'resetPassword'])
   router.post('/verify-email', [AuthController, 'verifyEmail'])
   router.post('/resend-verification-code', [AuthController, 'resendVerificationCode'])
+
 }).prefix('/api/auth')
 
 // Protected routes (require authentication)
@@ -117,6 +122,8 @@ router.group(() => {
   router.post('/notifications/:id/read', [NotificationsController, 'markAsRead'])
   router.post('/notifications', [NotificationsController, 'store'])
   router.delete('/notifications/:id', [NotificationsController, 'destroy'])
+
+  // Backup DB
 })
   .prefix('/api')
   .use(middleware.auth({ guards: ['api'] }))  // use this to ensure the auth middleware runs on these routes

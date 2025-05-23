@@ -40,6 +40,9 @@ export default class Product extends BaseModel {
   @column()
   declare categoryId: number
 
+  @column()
+  declare condition: 'new' | 'used'
+
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
 

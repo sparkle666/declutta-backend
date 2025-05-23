@@ -21,5 +21,6 @@ export const productValidator = vine.compile(
       // and a falsy value (null) to false.
       // This ensures the callback returns Promise<boolean>
     }),
+    condition: vine.enum(['new', 'used']),
   })
 )

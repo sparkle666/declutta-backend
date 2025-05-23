@@ -11,20 +11,20 @@ export default class ProductsController {
     return response.json(products)
   }
 
-  public async store({ request, response }: HttpContext) {
-    // const user = auth.user
-    // if (!user) {
-    //   return response.unauthorized({
-    //     status: 'error',
-    //     message: 'You must be logged in to access this resource.',
-    //     code: 'UNAUTHORIZED'
-    //   })
-    // }
+  public async store({ request, response, auth }: HttpContext) {
+    const user = auth.user
+    if (!user) {
+      return response.unauthorized({
+        status: 'error',
+        message: 'You must be logged in to access this resource.',
+        code: 'UNAUTHORIZED'
+      })
+    }
   
     const data = await request.validateUsing(productValidator)
   
     // Create the product
-    const product = await Product.create({ ...data, listedBy: 1 })
+    const product = await Product.create({ ...data, listedBy: user.id })
   
     // Handle images manually
     const images = request.files('images', {
@@ -67,6 +67,7 @@ export default class ProductsController {
 
   public async update({ params, request, response }: HttpContext) {
     const data = await request.validateUsing(productValidator)
+    // Ensure only 'new' or 'used' is accepted for condition (already validated)
     const product = await Product.findOrFail(params.id)
     product.merge(data)
     await product.save()

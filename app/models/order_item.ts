@@ -1,7 +1,7 @@
 import { BaseModel, column, belongsTo } from '@adonisjs/lucid/orm'
 import type { BelongsTo } from '@adonisjs/lucid/types/relations'
-import Order from './order'
-import Product from './product'
+import Order from './order.js'
+import Product from './product.js'
 
 export default class OrderItem extends BaseModel {
   @column({ isPrimary: true })

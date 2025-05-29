@@ -2,7 +2,6 @@ import type { HttpContext } from '@adonisjs/core/http'
 import Order from '#models/order'
 import OrderItem from '#models/order_item'
 import Product from '#models/product'
-import Env from '@adonisjs/core/env'
 import axios from 'axios'
 
 export default class CheckoutController {

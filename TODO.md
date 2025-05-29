@@ -1,5 +1,7 @@
 ### TODO
 
+TEST ORDER AND CHECKOUT ENDPOINTS, CREATE WISHLIST ENDPOINT
+
 CRUD Notifications API 
 
 - Description: To notify users of the mobile app on actions or notifications that concerns them on the app, it also have an isSeen field to check when a user sees a notification

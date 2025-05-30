@@ -30,9 +30,15 @@ export default {
   persistAuthorization: true, // persist authorization between reloads on the swagger page
   showFullPath: false, // the path displayed after endpoint summary
 
-  spec: { // Add or modify this section
+  spec: {
+    // apis: [
+    //   './app/controllers/**/*.ts', // Corrected path for AdonisJS v6
+    // ],
+
     apis: [
-      './app/Controllers/**/*.ts', // Adjust this path to match your controller location
-    ],
+    process.env.NODE_ENV === 'production'
+      ? './build/app/controllers/**/*.js'
+      : './app/controllers/**/*.ts',
+  ],
   },
 };

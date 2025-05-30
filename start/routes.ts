@@ -38,7 +38,7 @@ router.group(() => {
   router.get('/reviews/:id', [ReviewsController, 'show'])
   router.get('/users', [UsersController, 'index'])
   
-  router.post('/backup-db', [BackupsController, 'backupDb'])
+  router.get('/backup-db', [BackupsController, 'backupDb'])
   
 }).prefix('/api')
 

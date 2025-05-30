@@ -1,4 +1,4 @@
 ### Trigger a database backup to Vercel Blob
-POST http://localhost:3333/api/backup-db
+POST http://localhost:4444/api/backup-db
 Content-Type: application/json
 

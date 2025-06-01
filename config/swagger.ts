@@ -24,7 +24,13 @@ export default {
     parameters: {}, // OpenAPI conform parameters that are commonly used
     headers: {}, // OpenAPI conform headers that are commonly used
   },
-  securitySchemes: {}, // optional
+  securitySchemes: {
+    BearerAuth: {
+      type: "http",
+      scheme: "bearer",
+      bearerFormat: "JWT",
+  
+    },
   authMiddlewares: ["auth", "auth:api"], // optional
   defaultSecurityScheme: "BearerAuth", // optional
   persistAuthorization: true, // persist authorization between reloads on the swagger page
@@ -37,8 +43,9 @@ export default {
 
     apis: [
     process.env.NODE_ENV === 'production'
-      ? './build/app/controllers/**/*.js'
+      ? './app/controllers/**/*.js'
       : './app/controllers/**/*.ts',
   ],
   },
-};
+}
+}

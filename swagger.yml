@@ -1,0 +1,2113 @@
+openapi: "3.0.0"
+info:
+  title: "Declutta"
+  version: "1.0.0"
+  description: "The documentation for Declutta backend based on AdonisJs"
+components:
+  responses:
+    Forbidden:
+      description: "Access token is missing or invalid"
+    Accepted:
+      description: "The request was accepted"
+    Created:
+      description: "The resource has been created"
+    NotFound:
+      description: "The resource has been created"
+    NotAcceptable:
+      description: "The resource has been created"
+  securitySchemes:
+    BearerAuth:
+      type: "http"
+      scheme: "bearer"
+    BasicAuth:
+      type: "http"
+      scheme: "basic"
+    ApiKeyAuth:
+      type: "apiKey"
+      in: "header"
+      name: "X-API-Key"
+  schemas:
+    Any:
+      description: "Any JSON object not defined as schema"
+    BankAccount:
+      type: "object"
+      required: []
+      properties:
+        id:
+          type: "number"
+          example: 938
+        user_id:
+          type: "number"
+          example: 572
+        bank_name:
+          type: "string"
+          example: "Lorem Ipsum"
+        account_number:
+          type: "string"
+          example: "Lorem Ipsum"
+        home_address:
+          type: "string"
+          example: "Lorem Ipsum"
+        postal_code:
+          type: "string"
+          example: "Lorem Ipsum"
+        created_at:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+        updated_at:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+        user:
+          $ref: "#/components/schemas/User"
+          example: null
+      description: "BankAccount (Model)"
+    Card:
+      type: "object"
+      required: []
+      properties:
+        id:
+          type: "number"
+          example: 744
+        user_id:
+          type: "number"
+          example: 554
+        card_number:
+          type: "string"
+          example: "Lorem Ipsum"
+        bank_name:
+          type: "string"
+          example: "Lorem Ipsum"
+        expiration_date:
+          $ref: "#/components/schemas/string // MM/YY"
+          example: null
+        is_default:
+          type: "boolean"
+          example: true
+        card_holder_name:
+          type: "string"
+          example: "Lorem Ipsum"
+        created_at:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+        updated_at:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+        user:
+          $ref: "#/components/schemas/User"
+          example: null
+      description: "Card (Model)"
+    Cart:
+      type: "object"
+      required: []
+      properties:
+        id:
+          type: "number"
+          example: 509
+        user_id:
+          type: "number"
+          example: 621
+        items:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/CartItem"
+            example: null
+      description: "Cart (Model)"
+    CartItem:
+      type: "object"
+      required: []
+      properties:
+        id:
+          type: "number"
+          example: 138
+        cart_id:
+          type: "number"
+          example: 655
+        product_id:
+          type: "number"
+          example: 924
+        quantity:
+          type: "number"
+          example: 894
+        cart:
+          $ref: "#/components/schemas/Cart"
+          example: null
+        product:
+          $ref: "#/components/schemas/Product"
+          example: null
+      description: "CartItem (Model)"
+    Category:
+      type: "object"
+      required: []
+      properties:
+        id:
+          type: "number"
+          example: 424
+        category_name:
+          type: "string"
+          example: "Lorem Ipsum"
+        created_at:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+        updated_at:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+        products:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Product"
+            example: null
+      description: "Category (Model)"
+    ChatMessage:
+      type: "object"
+      required: []
+      properties:
+        id:
+          type: "number"
+          example: 915
+        sender_id:
+          type: "number"
+          example: 745
+        receiver_id:
+          type: "number"
+          example: 594
+        message:
+          type: "string"
+          example: "Lorem Ipsum"
+        is_read:
+          type: "boolean"
+          example: true
+        created_at:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+        sender:
+          $ref: "#/components/schemas/User"
+          example: null
+        receiver:
+          $ref: "#/components/schemas/User"
+          example: null
+      description: "ChatMessage (Model)"
+    Image:
+      type: "object"
+      required: []
+      properties:
+        id:
+          type: "number"
+          example: 705
+        image_url:
+          type: "string"
+          example: "Lorem Ipsum"
+        product_id:
+          type: "number"
+          example: 506
+        created_at:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+        updated_at:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+        product:
+          $ref: "#/components/schemas/Product"
+          example: null
+      description: "Image (Model)"
+    Notification:
+      type: "object"
+      required: []
+      properties:
+        id:
+          type: "number"
+          example: 925
+        user_id:
+          type: "number"
+          example: 370
+        title:
+          type: "string"
+          example: "Lorem Ipsum"
+        message:
+          type: "string"
+          example: "Lorem Ipsum"
+        action_url:
+          type: "string"
+          example: "Lorem Ipsum"
+        is_read:
+          type: "boolean"
+          example: true
+        created_at:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+        user:
+          $ref: "#/components/schemas/User"
+          example: null
+      description: "Notification (Model)"
+    Order:
+      type: "object"
+      required: []
+      properties:
+        id:
+          type: "number"
+          example: 780
+        user_id:
+          type: "number"
+          example: 983
+        status:
+          $ref: "#/components/schemas/'pending'"
+          example: null
+        total:
+          type: "number"
+          example: 996
+        paystack_ref:
+          type: "string"
+          example: "Lorem Ipsum"
+        created_at:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+        updated_at:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+        user:
+          $ref: "#/components/schemas/User"
+          example: null
+        items:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/OrderItem"
+            example: null
+      description: "Order (Model)"
+    OrderItem:
+      type: "object"
+      required: []
+      properties:
+        id:
+          type: "number"
+          example: 142
+        order_id:
+          type: "number"
+          example: 287
+        product_id:
+          type: "number"
+          example: 804
+        quantity:
+          type: "number"
+          example: 869
+        price:
+          type: "number"
+          example: 10.5
+        order:
+          $ref: "#/components/schemas/Order"
+          example: null
+        product:
+          $ref: "#/components/schemas/Product"
+          example: null
+      description: "OrderItem (Model)"
+    Post:
+      type: "object"
+      required: []
+      properties:
+        id:
+          type: "number"
+          example: 157
+        created_at:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+        title:
+          type: "string"
+          example: "Lorem Ipsum"
+        updated_at:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+      description: "Post (Model)"
+    Product:
+      type: "object"
+      required: []
+      properties:
+        id:
+          type: "number"
+          example: 226
+        product_name:
+          type: "string"
+          example: "Lorem Ipsum"
+        product_location:
+          type: "string"
+          example: "Lorem Ipsum"
+        product_status:
+          $ref: "#/components/schemas/'available'"
+          example: null
+        listed_by:
+          type: "number"
+          example: 757
+        product_price:
+          type: "number"
+          example: 5
+        product_details:
+          type: "string"
+          example: "Lorem Ipsum"
+        is_free:
+          type: "boolean"
+          example: true
+        is_for_sale:
+          type: "boolean"
+          example: true
+        category_id:
+          type: "number"
+          example: 525
+        condition:
+          $ref: "#/components/schemas/'new'"
+          example: null
+        created_at:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+        updated_at:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+        category:
+          $ref: "#/components/schemas/Category"
+          example: null
+        listed_by_user:
+          $ref: "#/components/schemas/User"
+          example: null
+        reviews:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Review"
+            example: null
+        images:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Image"
+            example: null
+        favourited_by:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/User"
+            example: null
+      description: "Product (Model)"
+    Review:
+      type: "object"
+      required: []
+      properties:
+        id:
+          type: "number"
+          example: 599
+        comment:
+          type: "string"
+          example: "Lorem Ipsum"
+        rating:
+          type: "number"
+          example: 60
+        user_id:
+          type: "number"
+          example: 521
+        product_id:
+          type: "number"
+          example: 116
+        created_at:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+        updated_at:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+        product:
+          $ref: "#/components/schemas/Product"
+          example: null
+        user:
+          $ref: "#/components/schemas/User"
+          example: null
+      description: "Review (Model)"
+    ShippingAddress:
+      type: "object"
+      required: []
+      properties:
+        id:
+          type: "number"
+          example: 60
+        user_id:
+          type: "number"
+          example: 939
+        address:
+          type: "string"
+          example: "1028 Farland Street"
+        postal_code:
+          type: "string"
+          example: "Lorem Ipsum"
+        is_default:
+          type: "boolean"
+          example: true
+        created_at:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+        updated_at:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+        user:
+          $ref: "#/components/schemas/User"
+          example: null
+      description: "ShippingAddress (Model)"
+    User:
+      type: "object"
+      required: []
+      properties:
+        id:
+          type: "number"
+          example: 533
+        full_name:
+          type: "string"
+          example: "John Doe"
+        first_name:
+          type: "string"
+          example: "John"
+        last_name:
+          type: "string"
+          example: "Doe"
+        email:
+          type: "string"
+          example: "johndoe@example.com"
+          format: "email"
+        role:
+          $ref: "#/components/schemas/'user'"
+          example: null
+        reset_password_token:
+          type: "string"
+          example: "Lorem Ipsum"
+        reset_password_expires:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+        email_verification_code:
+          type: "string"
+          example: "Lorem Ipsum"
+        email_verification_code_expires:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+        is_email_verified:
+          type: "boolean"
+          example: true
+        created_at:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+        updated_at:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+        products:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Product"
+            example: null
+        reviews:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Review"
+            example: null
+        wants:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Want"
+            example: null
+        favourites:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Product"
+            example: null
+      description: "User (Model)"
+    Want:
+      type: "object"
+      required: []
+      properties:
+        id:
+          type: "number"
+          example: 112
+        name:
+          type: "string"
+          example: "John Doe"
+        keywords:
+          type: "array"
+          items:
+            type: "string"
+            example: "Lorem Ipsum"
+        user_id:
+          type: "number"
+          example: 331
+        created_at:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+        updated_at:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+        user:
+          $ref: "#/components/schemas/User"
+          example: null
+      description: "Want (Model)"
+    PaginationMeta:
+      type: "object"
+      properties:
+        total:
+          type: "number"
+          example: 100
+          nullable: false
+        page:
+          type: "number"
+          example: 2
+          nullable: false
+        perPage:
+          type: "number"
+          example: 10
+          nullable: false
+        currentPage:
+          type: "number"
+          example: 3
+          nullable: false
+        lastPage:
+          type: "number"
+          example: 10
+          nullable: false
+        firstPage:
+          type: "number"
+          example: 1
+          nullable: false
+        lastPageUrl:
+          type: "string"
+          example: "/?page=10"
+          nullable: false
+        firstPageUrl:
+          type: "string"
+          example: "/?page=1"
+          nullable: false
+        nextPageUrl:
+          type: "string"
+          example: "/?page=6"
+          nullable: false
+        previousPageUrl:
+          type: "string"
+          example: "/?page=5"
+          nullable: false
+    emailVerificationValidator:
+      type: "object"
+      properties:
+        email:
+          type: "string"
+          example: "Lorem Ipsum"
+          required: true
+        code:
+          type: "string"
+          example: "Lorem Ipsum"
+          required: true
+      example:
+        email: "Lorem Ipsum"
+        code: "Lorem Ipsum"
+      description: "emailVerificationValidator (Validator)"
+    forgotPasswordValidator:
+      type: "object"
+      properties:
+        email:
+          type: "string"
+          example: "Lorem Ipsum"
+          required: true
+      example:
+        email: "Lorem Ipsum"
+      description: "forgotPasswordValidator (Validator)"
+    loginValidator:
+      type: "object"
+      properties:
+        email:
+          type: "string"
+          example: "Lorem Ipsum"
+          required: true
+        password:
+          type: "string"
+          example: "Lorem Ipsum"
+          required: true
+      example:
+        email: "Lorem Ipsum"
+        password: "Lorem Ipsum"
+      description: "loginValidator (Validator)"
+    resetPasswordValidator:
+      type: "object"
+      properties:
+        token:
+          type: "string"
+          example: "Lorem Ipsum"
+          required: true
+        password:
+          type: "string"
+          example: "Lorem Ipsum"
+          required: true
+          minLength: 8
+          maxLength: 32
+      example:
+        token: "Lorem Ipsum"
+        password: "Lorem Ipsum"
+      description: "resetPasswordValidator (Validator)"
+    signupValidator:
+      type: "object"
+      properties:
+        email:
+          type: "string"
+          example: "Lorem Ipsum"
+          required: true
+        password:
+          type: "string"
+          example: "Lorem Ipsum"
+          required: true
+          minLength: 8
+          maxLength: 32
+        fullName:
+          type: "string"
+          example: "Lorem Ipsum"
+        firstName:
+          type: "string"
+          example: "Lorem Ipsum"
+        lastName:
+          type: "string"
+          example: "Lorem Ipsum"
+      example:
+        email: "Lorem Ipsum"
+        password: "Lorem Ipsum"
+        fullName: "Lorem Ipsum"
+        firstName: "Lorem Ipsum"
+        lastName: "Lorem Ipsum"
+      description: "signupValidator (Validator)"
+    bankAccountValidator:
+      type: "object"
+      properties:
+        bankName:
+          type: "string"
+          example: "Lorem Ipsum"
+          required: true
+          minLength: 2
+        accountNumber:
+          type: "string"
+          example: "Lorem Ipsum"
+          required: true
+          minLength: 6
+        homeAddress:
+          type: "string"
+          example: "Lorem Ipsum"
+        postalCode:
+          type: "string"
+          example: "Lorem Ipsum"
+      example:
+        bankName: "Lorem Ipsum"
+        accountNumber: "Lorem Ipsum"
+        homeAddress: "Lorem Ipsum"
+        postalCode: "Lorem Ipsum"
+      description: "bankAccountValidator (Validator)"
+    cardValidator:
+      type: "object"
+      properties:
+        cardNumber:
+          type: "string"
+          example: "Lorem Ipsum"
+          required: true
+          minLength: 12
+          maxLength: 19
+        cardHolderName:
+          type: "string"
+          example: "Lorem Ipsum"
+          required: true
+          minLength: 2
+        bankName:
+          type: "string"
+          example: "Lorem Ipsum"
+          required: true
+          minLength: 2
+        expirationDate:
+          type: "string"
+          example: "Lorem Ipsum"
+          pattern: "/^\\d{2}\\/\\d{2}$/"
+          required: true
+        isDefault:
+          type: "boolean"
+          example: true
+      example:
+        cardNumber: "Lorem Ipsum"
+        cardHolderName: "Lorem Ipsum"
+        bankName: "Lorem Ipsum"
+        expirationDate: "Lorem Ipsum"
+        isDefault: true
+      description: "cardValidator (Validator)"
+    categoryValidator:
+      type: "object"
+      properties:
+        categoryName:
+          type: "string"
+          example: "Lorem Ipsum"
+          required: true
+          minLength: 1
+          maxLength: 50
+      example:
+        categoryName: "Lorem Ipsum"
+      description: "categoryValidator (Validator)"
+    chatMessageValidator:
+      type: "object"
+      properties:
+        receiverId:
+          type: "number"
+          example: 354
+          required: true
+        message:
+          type: "string"
+          example: "Lorem Ipsum"
+          required: true
+          minLength: 1
+          maxLength: 1000
+      example:
+        receiverId: 354
+        message: "Lorem Ipsum"
+      description: "chatMessageValidator (Validator)"
+    favouriteProductValidator:
+      type: "object"
+      properties:
+        productId:
+          type: "number"
+          example: 971
+          pattern: "async (db, value)=>{\n        // IMPORTANT: Execute the query and check for existence within the callback\n        // Use .first() which returns the record or null\n        const product = await db.query().from('products').where('id', value).first();\n        return !!product;\n    }"
+          required: true
+      example:
+        productId: 971
+      description: "favouriteProductValidator (Validator)"
+    imageValidator:
+      type: "object"
+      properties:
+        imageUrl:
+          type: "string"
+          example: "Lorem Ipsum"
+          required: true
+        productId:
+          type: "number"
+          example: 770
+          pattern: "async (db, value)=>{\n        // IMPORTANT: Execute the query and check for existence within the callback\n        // Use .first() which returns the record or null\n        const product = await db.query().from('products').where('id', value).first();\n        return !!product;\n    }"
+          required: true
+      example:
+        imageUrl: "Lorem Ipsum"
+        productId: 770
+      description: "imageValidator (Validator)"
+    notificationValidator:
+      type: "object"
+      properties:
+        userId:
+          type: "number"
+          example: 298
+        title:
+          type: "string"
+          example: "Lorem Ipsum"
+          required: true
+          minLength: 2
+        message:
+          type: "string"
+          example: "Lorem Ipsum"
+          required: true
+          minLength: 2
+        actionUrl:
+          type: "string"
+          example: "Lorem Ipsum"
+      example:
+        userId: 298
+        title: "Lorem Ipsum"
+        message: "Lorem Ipsum"
+        actionUrl: "Lorem Ipsum"
+      description: "notificationValidator (Validator)"
+    productValidator:
+      type: "object"
+      properties:
+        productName:
+          type: "string"
+          example: "Lorem Ipsum"
+          required: true
+          minLength: 1
+          maxLength: 100
+        productLocation:
+          type: "string"
+          example: "Lorem Ipsum"
+          required: true
+          minLength: 1
+          maxLength: 100
+        productStatus:
+          type: "number"
+          example: 563
+          choices:
+            - "available"
+            - "sold"
+            - "in stock"
+          required: true
+        productPrice:
+          type: "number"
+          example: 159
+          maximum: 1000000
+          required: true
+        productDetails:
+          type: "string"
+          example: "Lorem Ipsum"
+          maxLength: 500
+        isFree:
+          type: "boolean"
+          example: true
+        isForSale:
+          type: "boolean"
+          example: true
+        categoryId:
+          type: "number"
+          example: 565
+          pattern: "async (db, value)=>{\n        // IMPORTANT: Execute the query and check for existence within the callback\n        // Use .first() which returns the record or null\n        const category = await db.query().from('categories').where('id', value).first();\n        // Return true if a category was found (is truthy), false otherwise\n        return !!category;\n    // The '!!' operator converts a truthy value (the category object) to true\n    // and a falsy value (null) to false.\n    // This ensures the callback returns Promise<boolean>\n    }"
+          required: true
+        condition:
+          type: "number"
+          example: 584
+          choices:
+            - "new"
+            - "used"
+          required: true
+      example:
+        productName: "Lorem Ipsum"
+        productLocation: "Lorem Ipsum"
+        productStatus: 563
+        productPrice: 159
+        productDetails: "Lorem Ipsum"
+        isFree: true
+        isForSale: true
+        categoryId: 565
+        condition: 584
+      description: "productValidator (Validator)"
+    reviewValidator:
+      type: "object"
+      properties:
+        comment:
+          type: "string"
+          example: "Lorem Ipsum"
+          maxLength: 500
+        rating:
+          type: "number"
+          example: 1
+          minimum: 1
+          maximum: 5
+          required: true
+        productId:
+          type: "number"
+          example: 907
+          pattern: "async (db, value)=>{\n        // IMPORTANT: Execute the query and check for existence within the callback\n        // Use .first() which returns the record or null\n        const product = await db.query().from('products').where('id', value).first();\n        return !!product;\n    }"
+          required: true
+      example:
+        comment: "Lorem Ipsum"
+        rating: 1
+        productId: 907
+      description: "reviewValidator (Validator)"
+    shippingAddressValidator:
+      type: "object"
+      properties:
+        address:
+          type: "string"
+          example: "Lorem Ipsum"
+          required: true
+          minLength: 5
+        postalCode:
+          type: "string"
+          example: "Lorem Ipsum"
+          required: true
+          minLength: 3
+        isDefault:
+          type: "boolean"
+          example: true
+      example:
+        address: "Lorem Ipsum"
+        postalCode: "Lorem Ipsum"
+        isDefault: true
+      description: "shippingAddressValidator (Validator)"
+    wantValidator:
+      type: "object"
+      properties:
+        name:
+          type: "string"
+          example: "Lorem Ipsum"
+          required: true
+          minLength: 1
+          maxLength: 100
+        keywords:
+          type: "array"
+          items:
+            type: "number"
+            example: 1
+            minimum: 1
+          required: true
+          properties:
+            items:
+              type: "string"
+              example: "Lorem Ipsum"
+      example:
+        name: "Lorem Ipsum"
+        keywords:
+          - "Lorem Ipsum"
+      description: "wantValidator (Validator)"
+paths:
+  /:
+    get:
+      summary: "route"
+      description: "\n\n __ - ****"
+      parameters: []
+      tags: []
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json: {}
+      security: []
+  /api/categories:
+    get:
+      summary: "Get a list of categories (index)"
+      description: "\n\n _app/controllers/categories_controller.ts_ - **index**"
+      parameters: []
+      tags:
+        - "CATEGORIES"
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json: {}
+      security: []
+    post:
+      summary: " (store)"
+      description: "\n\n _app/controllers/categories_controller.ts_ - **store**"
+      parameters: []
+      tags:
+        - "CATEGORIES"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+      requestBody:
+        content:
+          application/json: {}
+  /api/categories/{id}:
+    get:
+      summary: "Get a single instance of categories (show)"
+      description: "\n\n _app/controllers/categories_controller.ts_ - **show**"
+      parameters:
+        - in: "path"
+          name: "id"
+          schema:
+            type: "string"
+          required: true
+      tags:
+        - "CATEGORIES"
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json: {}
+      security: []
+    put:
+      summary: "Update categories (update)"
+      description: "\n\n _app/controllers/categories_controller.ts_ - **update**"
+      parameters:
+        - in: "path"
+          name: "id"
+          schema:
+            type: "string"
+          required: true
+      tags:
+        - "CATEGORIES"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+      requestBody:
+        content:
+          application/json: {}
+    delete:
+      summary: "Delete categories (destroy)"
+      description: "\n\n _app/controllers/categories_controller.ts_ - **destroy**"
+      parameters:
+        - in: "path"
+          name: "id"
+          schema:
+            type: "string"
+          required: true
+      tags:
+        - "CATEGORIES"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+  /api/products:
+    get:
+      summary: "Get a list of products (index)"
+      description: "\n\n _app/controllers/products_controller.ts_ - **index**"
+      parameters: []
+      tags:
+        - "PRODUCTS"
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json: {}
+      security: []
+    post:
+      summary: " (store)"
+      description: "\n\n _app/controllers/products_controller.ts_ - **store**"
+      parameters: []
+      tags:
+        - "PRODUCTS"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+      requestBody:
+        content:
+          application/json: {}
+  /api/products/{id}:
+    get:
+      summary: "Get a single instance of products (show)"
+      description: "\n\n _app/controllers/products_controller.ts_ - **show**"
+      parameters:
+        - in: "path"
+          name: "id"
+          schema:
+            type: "string"
+          required: true
+      tags:
+        - "PRODUCTS"
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json: {}
+      security: []
+    put:
+      summary: "Update products (update)"
+      description: "\n\n _app/controllers/products_controller.ts_ - **update**"
+      parameters:
+        - in: "path"
+          name: "id"
+          schema:
+            type: "string"
+          required: true
+      tags:
+        - "PRODUCTS"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+      requestBody:
+        content:
+          application/json: {}
+    delete:
+      summary: "Delete products (destroy)"
+      description: "\n\n _app/controllers/products_controller.ts_ - **destroy**"
+      parameters:
+        - in: "path"
+          name: "id"
+          schema:
+            type: "string"
+          required: true
+      tags:
+        - "PRODUCTS"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+  /api/reviews:
+    get:
+      summary: "Get a list of reviews (index)"
+      description: "\n\n _app/controllers/reviews_controller.ts_ - **index**"
+      parameters: []
+      tags:
+        - "REVIEWS"
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json: {}
+      security: []
+    post:
+      summary: " (store)"
+      description: "\n\n _app/controllers/reviews_controller.ts_ - **store**"
+      parameters: []
+      tags:
+        - "REVIEWS"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+      requestBody:
+        content:
+          application/json: {}
+  /api/reviews/{id}:
+    get:
+      summary: "Get a single instance of reviews (show)"
+      description: "\n\n _app/controllers/reviews_controller.ts_ - **show**"
+      parameters:
+        - in: "path"
+          name: "id"
+          schema:
+            type: "string"
+          required: true
+      tags:
+        - "REVIEWS"
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json: {}
+      security: []
+    put:
+      summary: "Update reviews (update)"
+      description: "\n\n _app/controllers/reviews_controller.ts_ - **update**"
+      parameters:
+        - in: "path"
+          name: "id"
+          schema:
+            type: "string"
+          required: true
+      tags:
+        - "REVIEWS"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+      requestBody:
+        content:
+          application/json: {}
+    delete:
+      summary: "Delete reviews (destroy)"
+      description: "\n\n _app/controllers/reviews_controller.ts_ - **destroy**"
+      parameters:
+        - in: "path"
+          name: "id"
+          schema:
+            type: "string"
+          required: true
+      tags:
+        - "REVIEWS"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+  /api/users:
+    get:
+      summary: "Get a list of users (index)"
+      description: "\n\n _app/controllers/users_controller.ts_ - **index**"
+      parameters: []
+      tags:
+        - "USERS"
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json: {}
+      security: []
+  /api/backup-db:
+    get:
+      summary: " (backupDb)"
+      description: "\n\n _app/controllers/backups_controller.ts_ - **backupDb**"
+      parameters: []
+      tags:
+        - "BACKUP-DB"
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json: {}
+      security: []
+  /api/auth/signup:
+    post:
+      summary: " (signup)"
+      description: "\n\n _app/controllers/auth_controller.ts_ - **signup**"
+      parameters: []
+      tags:
+        - "AUTH"
+      responses:
+        201:
+          description: "Created"
+          content:
+            application/json: {}
+      security: []
+      requestBody:
+        content:
+          application/json: {}
+  /api/auth/login:
+    post:
+      summary: " (login)"
+      description: "\n\n _app/controllers/auth_controller.ts_ - **login**"
+      parameters: []
+      tags:
+        - "AUTH"
+      responses:
+        201:
+          description: "Created"
+          content:
+            application/json: {}
+      security: []
+      requestBody:
+        content:
+          application/json: {}
+  /api/auth/forgot-password:
+    post:
+      summary: " (forgotPassword)"
+      description: "\n\n _app/controllers/auth_controller.ts_ - **forgotPassword**"
+      parameters: []
+      tags:
+        - "AUTH"
+      responses:
+        201:
+          description: "Created"
+          content:
+            application/json: {}
+      security: []
+      requestBody:
+        content:
+          application/json: {}
+  /api/auth/reset-password:
+    post:
+      summary: " (resetPassword)"
+      description: "\n\n _app/controllers/auth_controller.ts_ - **resetPassword**"
+      parameters: []
+      tags:
+        - "AUTH"
+      responses:
+        201:
+          description: "Created"
+          content:
+            application/json: {}
+      security: []
+      requestBody:
+        content:
+          application/json: {}
+  /api/auth/verify-email:
+    post:
+      summary: " (verifyEmail)"
+      description: "\n\n _app/controllers/auth_controller.ts_ - **verifyEmail**"
+      parameters: []
+      tags:
+        - "AUTH"
+      responses:
+        201:
+          description: "Created"
+          content:
+            application/json: {}
+      security: []
+      requestBody:
+        content:
+          application/json: {}
+  /api/auth/resend-verification-code:
+    post:
+      summary: " (resendVerificationCode)"
+      description: "\n\n _app/controllers/auth_controller.ts_ - **resendVerificationCode**"
+      parameters: []
+      tags:
+        - "AUTH"
+      responses:
+        201:
+          description: "Created"
+          content:
+            application/json: {}
+      security: []
+      requestBody:
+        content:
+          application/json: {}
+  /api/users/{id}:
+    put:
+      summary: "Update users (update)"
+      description: "\n\n _app/controllers/users_controller.ts_ - **update**"
+      parameters:
+        - in: "path"
+          name: "id"
+          schema:
+            type: "string"
+          required: true
+      tags:
+        - "USERS"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+      requestBody:
+        content:
+          application/json: {}
+    get:
+      summary: " (getUserById)"
+      description: "\n\n _app/controllers/users_controller.ts_ - **getUserById**"
+      parameters:
+        - in: "path"
+          name: "id"
+          schema:
+            type: "string"
+          required: true
+      tags:
+        - "USERS"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+  /api/images:
+    post:
+      summary: " (store)"
+      description: "\n\n _app/controllers/images_controller.ts_ - **store**"
+      parameters: []
+      tags:
+        - "IMAGES"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+      requestBody:
+        content:
+          application/json: {}
+  /api/images/{id}:
+    delete:
+      summary: "Delete images (destroy)"
+      description: "\n\n _app/controllers/images_controller.ts_ - **destroy**"
+      parameters:
+        - in: "path"
+          name: "id"
+          schema:
+            type: "string"
+          required: true
+      tags:
+        - "IMAGES"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+  /api/favourites:
+    get:
+      summary: "Get a list of favourites (index)"
+      description: "\n\n _app/controllers/favourite_products_controller.ts_ - **index**"
+      parameters: []
+      tags:
+        - "FAVOURITES"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+    post:
+      summary: " (store)"
+      description: "\n\n _app/controllers/favourite_products_controller.ts_ - **store**"
+      parameters: []
+      tags:
+        - "FAVOURITES"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+      requestBody:
+        content:
+          application/json: {}
+  /api/favourites/{id}:
+    delete:
+      summary: "Delete favourites (destroy)"
+      description: "\n\n _app/controllers/favourite_products_controller.ts_ - **destroy**"
+      parameters:
+        - in: "path"
+          name: "id"
+          schema:
+            type: "string"
+          required: true
+      tags:
+        - "FAVOURITES"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+  /api/wants:
+    get:
+      summary: "Get a list of wants (index)"
+      description: "\n\n _app/controllers/wants_controller.ts_ - **index**"
+      parameters: []
+      tags:
+        - "WANTS"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+    post:
+      summary: " (store)"
+      description: "\n\n _app/controllers/wants_controller.ts_ - **store**"
+      parameters: []
+      tags:
+        - "WANTS"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+      requestBody:
+        content:
+          application/json: {}
+  /api/wants/{id}:
+    get:
+      summary: "Get a single instance of wants (show)"
+      description: "\n\n _app/controllers/wants_controller.ts_ - **show**"
+      parameters:
+        - in: "path"
+          name: "id"
+          schema:
+            type: "string"
+          required: true
+      tags:
+        - "WANTS"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+    put:
+      summary: "Update wants (update)"
+      description: "\n\n _app/controllers/wants_controller.ts_ - **update**"
+      parameters:
+        - in: "path"
+          name: "id"
+          schema:
+            type: "string"
+          required: true
+      tags:
+        - "WANTS"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+      requestBody:
+        content:
+          application/json: {}
+    delete:
+      summary: "Delete wants (destroy)"
+      description: "\n\n _app/controllers/wants_controller.ts_ - **destroy**"
+      parameters:
+        - in: "path"
+          name: "id"
+          schema:
+            type: "string"
+          required: true
+      tags:
+        - "WANTS"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+  /api/chats/conversations:
+    get:
+      summary: " (conversations)"
+      description: "\n\n _app/controllers/chat_messages_controller.ts_ - **conversations**"
+      parameters: []
+      tags:
+        - "CHATS"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+  /api/chats:
+    get:
+      summary: "Get a list of chats (index)"
+      description: "\n\n _app/controllers/chat_messages_controller.ts_ - **index**"
+      parameters: []
+      tags:
+        - "CHATS"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+    post:
+      summary: " (store)"
+      description: "\n\n _app/controllers/chat_messages_controller.ts_ - **store**"
+      parameters: []
+      tags:
+        - "CHATS"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+      requestBody:
+        content:
+          application/json: {}
+  /api/chats/mark-as-read:
+    post:
+      summary: " (markAsRead)"
+      description: "\n\n _app/controllers/chat_messages_controller.ts_ - **markAsRead**"
+      parameters: []
+      tags:
+        - "CHATS"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+      requestBody:
+        content:
+          application/json: {}
+  /api/bank-accounts:
+    get:
+      summary: "Get a list of bank-accounts (index)"
+      description: "\n\n _app/controllers/bank_accounts_controller.ts_ - **index**"
+      parameters: []
+      tags:
+        - "BANK-ACCOUNTS"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+    post:
+      summary: " (store)"
+      description: "\n\n _app/controllers/bank_accounts_controller.ts_ - **store**"
+      parameters: []
+      tags:
+        - "BANK-ACCOUNTS"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+      requestBody:
+        content:
+          application/json: {}
+  /api/bank-accounts/{id}:
+    get:
+      summary: "Get a single instance of bank-accounts (show)"
+      description: "\n\n _app/controllers/bank_accounts_controller.ts_ - **show**"
+      parameters:
+        - in: "path"
+          name: "id"
+          schema:
+            type: "string"
+          required: true
+      tags:
+        - "BANK-ACCOUNTS"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+    put:
+      summary: "Update bank-accounts (update)"
+      description: "\n\n _app/controllers/bank_accounts_controller.ts_ - **update**"
+      parameters:
+        - in: "path"
+          name: "id"
+          schema:
+            type: "string"
+          required: true
+      tags:
+        - "BANK-ACCOUNTS"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+      requestBody:
+        content:
+          application/json: {}
+    delete:
+      summary: "Delete bank-accounts (destroy)"
+      description: "\n\n _app/controllers/bank_accounts_controller.ts_ - **destroy**"
+      parameters:
+        - in: "path"
+          name: "id"
+          schema:
+            type: "string"
+          required: true
+      tags:
+        - "BANK-ACCOUNTS"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+  /api/cards:
+    get:
+      summary: "Get a list of cards (index)"
+      description: "\n\n _app/controllers/cards_controller.ts_ - **index**"
+      parameters: []
+      tags:
+        - "CARDS"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+    post:
+      summary: " (store)"
+      description: "\n\n _app/controllers/cards_controller.ts_ - **store**"
+      parameters: []
+      tags:
+        - "CARDS"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+      requestBody:
+        content:
+          application/json: {}
+  /api/cards/{id}:
+    get:
+      summary: "Get a single instance of cards (show)"
+      description: "\n\n _app/controllers/cards_controller.ts_ - **show**"
+      parameters:
+        - in: "path"
+          name: "id"
+          schema:
+            type: "string"
+          required: true
+      tags:
+        - "CARDS"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+    put:
+      summary: "Update cards (update)"
+      description: "\n\n _app/controllers/cards_controller.ts_ - **update**"
+      parameters:
+        - in: "path"
+          name: "id"
+          schema:
+            type: "string"
+          required: true
+      tags:
+        - "CARDS"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+      requestBody:
+        content:
+          application/json: {}
+    delete:
+      summary: "Delete cards (destroy)"
+      description: "\n\n _app/controllers/cards_controller.ts_ - **destroy**"
+      parameters:
+        - in: "path"
+          name: "id"
+          schema:
+            type: "string"
+          required: true
+      tags:
+        - "CARDS"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+  /api/shipping-addresses:
+    get:
+      summary: "Get a list of shipping-addresses (index)"
+      description: "\n\n _app/controllers/shipping_addresses_controller.ts_ - **index**"
+      parameters: []
+      tags:
+        - "SHIPPING-ADDRESSES"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+    post:
+      summary: " (store)"
+      description: "\n\n _app/controllers/shipping_addresses_controller.ts_ - **store**"
+      parameters: []
+      tags:
+        - "SHIPPING-ADDRESSES"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+      requestBody:
+        content:
+          application/json: {}
+  /api/shipping-addresses/{id}:
+    get:
+      summary: "Get a single instance of shipping-addresses (show)"
+      description: "\n\n _app/controllers/shipping_addresses_controller.ts_ - **show**"
+      parameters:
+        - in: "path"
+          name: "id"
+          schema:
+            type: "string"
+          required: true
+      tags:
+        - "SHIPPING-ADDRESSES"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+    put:
+      summary: "Update shipping-addresses (update)"
+      description: "\n\n _app/controllers/shipping_addresses_controller.ts_ - **update**"
+      parameters:
+        - in: "path"
+          name: "id"
+          schema:
+            type: "string"
+          required: true
+      tags:
+        - "SHIPPING-ADDRESSES"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+      requestBody:
+        content:
+          application/json: {}
+    delete:
+      summary: "Delete shipping-addresses (destroy)"
+      description: "\n\n _app/controllers/shipping_addresses_controller.ts_ - **destroy**"
+      parameters:
+        - in: "path"
+          name: "id"
+          schema:
+            type: "string"
+          required: true
+      tags:
+        - "SHIPPING-ADDRESSES"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+  /api/notifications:
+    get:
+      summary: "Get a list of notifications (index)"
+      description: "\n\n _app/controllers/notifications_controller.ts_ - **index**"
+      parameters: []
+      tags:
+        - "NOTIFICATIONS"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+    post:
+      summary: " (store)"
+      description: "\n\n _app/controllers/notifications_controller.ts_ - **store**"
+      parameters: []
+      tags:
+        - "NOTIFICATIONS"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+      requestBody:
+        content:
+          application/json: {}
+  /api/notifications/unread:
+    get:
+      summary: " (unread)"
+      description: "\n\n _app/controllers/notifications_controller.ts_ - **unread**"
+      parameters: []
+      tags:
+        - "NOTIFICATIONS"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+  /api/notifications/{id}/read:
+    post:
+      summary: " (markAsRead)"
+      description: "\n\n _app/controllers/notifications_controller.ts_ - **markAsRead**"
+      parameters:
+        - in: "path"
+          name: "id"
+          schema:
+            type: "string"
+          required: true
+      tags:
+        - "NOTIFICATIONS"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+      requestBody:
+        content:
+          application/json: {}
+  /api/notifications/{id}:
+    delete:
+      summary: "Delete notifications (destroy)"
+      description: "\n\n _app/controllers/notifications_controller.ts_ - **destroy**"
+      parameters:
+        - in: "path"
+          name: "id"
+          schema:
+            type: "string"
+          required: true
+      tags:
+        - "NOTIFICATIONS"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+  /api/checkout:
+    post:
+      summary: " (checkout)"
+      description: "\n\n _app/controllers/checkout_controller.ts_ - **checkout**"
+      parameters: []
+      tags:
+        - "CHECKOUT"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+      requestBody:
+        content:
+          application/json: {}
+  /api/paystack/webhook:
+    post:
+      summary: " (paystackWebhook)"
+      description: "\n\n _app/controllers/checkout_controller.ts_ - **paystackWebhook**"
+      parameters: []
+      tags:
+        - "PAYSTACK"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+      requestBody:
+        content:
+          application/json: {}
+  /api/orders/{id}:
+    get:
+      summary: "Get a single instance of orders (show)"
+      description: "\n\n _app/controllers/checkout_controller.ts_ - **show**"
+      parameters:
+        - in: "path"
+          name: "id"
+          schema:
+            type: "string"
+          required: true
+      tags:
+        - "ORDERS"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+tags:
+  - name: "CATEGORIES"
+    description: "Everything related to CATEGORIES"
+  - name: "PRODUCTS"
+    description: "Everything related to PRODUCTS"
+  - name: "REVIEWS"
+    description: "Everything related to REVIEWS"
+  - name: "USERS"
+    description: "Everything related to USERS"
+  - name: "BACKUP-DB"
+    description: "Everything related to BACKUP-DB"
+  - name: "AUTH"
+    description: "Everything related to AUTH"
+  - name: "IMAGES"
+    description: "Everything related to IMAGES"
+  - name: "FAVOURITES"
+    description: "Everything related to FAVOURITES"
+  - name: "WANTS"
+    description: "Everything related to WANTS"
+  - name: "CHATS"
+    description: "Everything related to CHATS"
+  - name: "BANK-ACCOUNTS"
+    description: "Everything related to BANK-ACCOUNTS"
+  - name: "CARDS"
+    description: "Everything related to CARDS"
+  - name: "SHIPPING-ADDRESSES"
+    description: "Everything related to SHIPPING-ADDRESSES"
+  - name: "NOTIFICATIONS"
+    description: "Everything related to NOTIFICATIONS"
+  - name: "CHECKOUT"
+    description: "Everything related to CHECKOUT"
+  - name: "PAYSTACK"
+    description: "Everything related to PAYSTACK"
+  - name: "ORDERS"
+    description: "Everything related to ORDERS"

@@ -11,7 +11,10 @@
 
 import { Env } from '@adonisjs/core/env'
 
-export default await Env.create(new URL('../', import.meta.url), {
+
+export default await Env.create(new URL('../', import.meta.url), 
+
+{
   NODE_ENV: Env.schema.enum(['development', 'production', 'test'] as const),
   PORT: Env.schema.number(),
   APP_KEY: Env.schema.string(),
@@ -34,4 +37,5 @@ export default await Env.create(new URL('../', import.meta.url), {
   PAYSTACK_SECRET_KEY: Env.schema.string(),
   PAYSTACK_CALLBACK_URL: Env.schema.string(),
 
-})
+}
+)

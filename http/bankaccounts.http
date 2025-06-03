@@ -1,11 +1,11 @@
 ### Get all bank accounts for the authenticated user
 GET http://localhost:3333/api/bank-accounts
-Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+Authorization: Bearer oat_MQ.Tm1wMUZRdWl3Y0dBR3NLMFVISGlmc0JXR25lZFRneXUtNllEQzUxMzExNjcwMzI1ODk
 
 ### Create a new bank account
 POST http://localhost:3333/api/bank-accounts
 Content-Type: application/json
-Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+Authorization: Bearer oat_MQ.Tm1wMUZRdWl3Y0dBR3NLMFVISGlmc0JXR25lZFRneXUtNllEQzUxMzExNjcwMzI1ODk
 
 {
   "bankName": "Union Bank",
@@ -16,12 +16,12 @@ Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0I
 
 ### Get a single bank account by ID
 GET http://localhost:3333/api/bank-accounts/1
-Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+Authorization: Bearer oat_MQ.Tm1wMUZRdWl3Y0dBR3NLMFVISGlmc0JXR25lZFRneXUtNllEQzUxMzExNjcwMzI1ODk
 
 ### Update a bank account by ID
 PUT http://localhost:3333/api/bank-accounts/1
 Content-Type: application/json
-Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+Authorization: Bearer oat_MQ.Tm1wMUZRdWl3Y0dBR3NLMFVISGlmc0JXR25lZFRneXUtNllEQzUxMzExNjcwMzI1ODk
 
 {
   "bankName": "GTBank",
@@ -32,4 +32,4 @@ Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0I
 
 ### Delete a bank account by ID
 DELETE http://localhost:3333/api/bank-accounts/1
-Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+Authorization: Bearer oat_MQ.Tm1wMUZRdWl3Y0dBR3NLMFVISGlmc0JXR25lZFRneXUtNllEQzUxMzExNjcwMzI1ODk

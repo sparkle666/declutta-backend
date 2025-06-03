@@ -1,19 +1,19 @@
 ### Get all notifications
 GET http://localhost:3333/api/notifications
-Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+Authorization: Bearer oat_MQ.Tm1wMUZRdWl3Y0dBR3NLMFVISGlmc0JXR25lZFRneXUtNllEQzUxMzExNjcwMzI1ODk
 
 ### Get unread notifications
 GET http://localhost:3333/api/notifications/unread
-Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+Authorization: Bearer oat_MQ.Tm1wMUZRdWl3Y0dBR3NLMFVISGlmc0JXR25lZFRneXUtNllEQzUxMzExNjcwMzI1ODk
 
 ### Mark a notification as read
 POST http://localhost:3333/api/notifications/1/read
-Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+Authorization: Bearer oat_MQ.Tm1wMUZRdWl3Y0dBR3NLMFVISGlmc0JXR25lZFRneXUtNllEQzUxMzExNjcwMzI1ODk
 
 ### Create a universal notification (admin/system only)
 POST http://localhost:3333/api/notifications
 Content-Type: application/json
-Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+Authorization: Bearer oat_MQ.Tm1wMUZRdWl3Y0dBR3NLMFVISGlmc0JXR25lZFRneXUtNllEQzUxMzExNjcwMzI1ODk
 
 {
   "title": "System Update",
@@ -23,7 +23,7 @@ Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0I
 ### Create a personal notification (admin/system only)
 POST http://localhost:3333/api/notifications
 Content-Type: application/json
-Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+Authorization: Bearer oat_MQ.Tm1wMUZRdWl3Y0dBR3NLMFVISGlmc0JXR25lZFRneXUtNllEQzUxMzExNjcwMzI1ODk
 
 {
   "userId": 2,
@@ -33,4 +33,4 @@ Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0I
 
 ### Delete a notification (admin/system only)
 DELETE http://localhost:3333/api/notifications/1
-Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+Authorization: Bearer oat_MQ.Tm1wMUZRdWl3Y0dBR3NLMFVISGlmc0JXR25lZFRneXUtNllEQzUxMzExNjcwMzI1ODk

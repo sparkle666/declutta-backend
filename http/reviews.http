@@ -1,11 +1,11 @@
 ### Get all reviews
 GET http://localhost:3333/api/reviews
-Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+Authorization: Bearer oat_MQ.Tm1wMUZRdWl3Y0dBR3NLMFVISGlmc0JXR25lZFRneXUtNllEQzUxMzExNjcwMzI1ODk
 
 ### Create a new review
 POST http://localhost:3333/api/reviews
 Content-Type: application/json
-Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+Authorization: Bearer oat_MQ.Tm1wMUZRdWl3Y0dBR3NLMFVISGlmc0JXR25lZFRneXUtNllEQzUxMzExNjcwMzI1ODk
 
 {
   "productId": 1,
@@ -16,12 +16,12 @@ Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0I
 
 ### Get a review by ID
 GET http://localhost:3333/api/reviews/1
-Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+Authorization: Bearer oat_MQ.Tm1wMUZRdWl3Y0dBR3NLMFVISGlmc0JXR25lZFRneXUtNllEQzUxMzExNjcwMzI1ODk
 
 ### Update a review by ID
 PUT http://localhost:3333/api/reviews/1
 Content-Type: application/json
-Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+Authorization: Bearer oat_MQ.Tm1wMUZRdWl3Y0dBR3NLMFVISGlmc0JXR25lZFRneXUtNllEQzUxMzExNjcwMzI1ODk
 
 {
   "rating": 4,
@@ -30,4 +30,4 @@ Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0I
 
 ### Delete a review by ID
 DELETE http://localhost:3333/api/reviews/1
-Authorization: Bearer oat_NQ.a0M1a0FJa0NuSXA4QjlQOHlxY2xscGFRM1ZMbXAtREM3bWdld0IyUjE1MDI4MTQ3MzM
+Authorization: Bearer oat_MQ.Tm1wMUZRdWl3Y0dBR3NLMFVISGlmc0JXR25lZFRneXUtNllEQzUxMzExNjcwMzI1ODk

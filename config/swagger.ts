@@ -41,10 +41,13 @@ export default {
     //   './app/controllers/**/*.ts', // Corrected path for AdonisJS v6
     // ],
 
-    apis: [
+   apis: [
     process.env.NODE_ENV === 'production'
-      ? './app/controllers/**/*.js'
+      ? './build/app/controllers/**/*.js'
       : './app/controllers/**/*.ts',
+    process.env.NODE_ENV === 'production'
+      ? './build/app/models/**/*.js'
+      : './app/models/**/*.ts',
   ],
   },
 }

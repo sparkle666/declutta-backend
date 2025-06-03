@@ -144,3 +144,7 @@ router.get('/docs', async () => {
   return AutoSwagger.default.scalar('/swagger')
   // return AutoSwagger.default.rapidoc('/swagger', 'view')
 })
+router.get('/docs/rapid', async () => {
+  // return AutoSwagger.default.scalar('/swagger')
+  return AutoSwagger.default.rapidoc('/swagger', 'view')
+})

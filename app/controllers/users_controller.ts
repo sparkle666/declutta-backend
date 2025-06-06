@@ -78,5 +78,35 @@ export default class UsersController {
         }
       }
       
-      
+      public async delete({ auth, params, response }: HttpContext) {
+        try {
+          // Check if the authenticated user is admin
+          const currentUser = auth.user
+          if (!currentUser || currentUser.role !== 'admin') {
+            return response.forbidden({
+              status: 'error',
+              message: 'Only admins can delete users.'
+            })
+          }
+
+          const user = await User.find(params.id)
+          if (!user) {
+            return response.status(404).json({
+              status: 'error',
+              message: 'User not found.'
+            })
+          }
+          await user.delete()
+          return response.json({
+            status: 'success',
+            message: 'User deleted successfully.'
+          })
+        } catch (error) {
+          return response.status(500).json({
+            status: 'error',
+            message: 'Failed to delete user.',
+            error: error.message
+          })
+        }
+      }
   }

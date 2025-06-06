@@ -62,3 +62,9 @@ Content-Type: application/json
     "token": "reset-token",
     "password": "newpassword123"
 }
+
+###
+
+### Delete User (Admin only)
+DELETE http://localhost:3333/api/users/2
+Authorization: Bearer oat_Ng.SzY2YmtfZHNkWkc2TGxDdmI1Szhsamw3OFEwampsZ0ZVU3gxY19sczkyNTczNzcxMw

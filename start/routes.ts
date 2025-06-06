@@ -58,6 +58,7 @@ router.group(() => {
   // User routes                                               
   router.put('/users/:id', [UsersController, 'update'])
   router.get('/users/:id', [UsersController, 'getUserById'])
+  router.delete('/users/:id', [UsersController, 'delete'])
 
   // Categories
   router.post('/categories', [CategoriesController, 'store'])

@@ -61,11 +61,14 @@ export default class AuthController {
       })
     } catch (error) {
       // Handle duplicate email error
-      if (error.code === '23505' && error.detail && error.detail.includes('users_email_unique')) {
-        return response.conflict({
-          message: 'Email already in use',
-        })
-      }
+     if (
+        (error.code === '23505' && error.detail && error.detail.includes('users_email_unique')) ||
+        (error.message && error.message.includes('duplicate key value') && error.message.includes('users_email_unique'))
+    ) {
+      return response.conflict({
+        message: 'Email already in use',
+      })
+    }
       return response.badRequest({ 
         message: 'Error creating user', 
         error: error.message 

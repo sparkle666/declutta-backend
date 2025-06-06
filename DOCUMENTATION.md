@@ -2,6 +2,8 @@
 
 Welcome to the Declutta API! This documentation provides an overview of all available endpoints, authentication methods, and usage examples for integrating with the Declutta backend.
 
+PROD URL: https://declutta-backend.onrender.com/
+
 ---
 
 ## Table of Contents

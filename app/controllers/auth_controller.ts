@@ -60,12 +60,20 @@ export default class AuthController {
         userId: user.id
       })
     } catch (error) {
+      // Handle duplicate email error
+      if (error.code === '23505' && error.detail && error.detail.includes('users_email_unique')) {
+        return response.conflict({
+          message: 'Email already in use',
+        })
+      }
       return response.badRequest({ 
         message: 'Error creating user', 
         error: error.message 
       })
     }
   }
+
+  
 
   /**
    * Verify email with 4-digit code

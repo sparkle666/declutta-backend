@@ -217,6 +217,159 @@ Common HTTP status codes:
 
 ---
 
+## Auth Flow Diagram & Endpoints
+
+```
++-------------------+
+|   Signup Request  |
+| POST /api/auth/signup |
++-------------------+
+         |
+         v
++-----------------------------+
+| Validate & Create User      |
++-----------------------------+
+         |
+         v
++-----------------------------+
+| Generate Verification Code  |
++-----------------------------+
+         |
+         v
++-----------------------------+
+| Send Verification Email     |
++-----------------------------+
+         |
+         v
++-----------------------------+
+| Return: User Created        |
++-----------------------------+
+
+         |
+         v
++-------------------+
+| Verify Email      |
+| POST /api/auth/verify-email |
++-------------------+
+         |
+         v
++-----------------------------+
+| Validate Code & Email       |
++-----------------------------+
+         |
+         v
++-----------------------------+
+| If Valid: Mark Verified     |
++-----------------------------+
+         |
+         v
++-----------------------------+
+| Return: Email Verified      |
++-----------------------------+
+
+         |
+         v
++-------------------+
+| Login Request     |
+| POST /api/auth/login |
++-------------------+
+         |
+         v
++-----------------------------+
+| Validate Credentials        |
++-----------------------------+
+         |
+         v
++-----------------------------+
+| Check Email Verified        |
++-----------------------------+
+         |
+         v
++-----------------------------+
+| If Verified: Return Token   |
++-----------------------------+
+| Else: Return Forbidden      |
++-----------------------------+
+
+         |
+         v
++-------------------+
+| Forgot Password   |
+| POST /api/auth/forgot-password |
++-------------------+
+         |
+         v
++-----------------------------+
+| Generate Reset Token        |
++-----------------------------+
+         |
+         v
++-----------------------------+
+| Send Reset Email            |
++-----------------------------+
+         |
+         v
++-----------------------------+
+| Return: Reset Link Sent     |
++-----------------------------+
+
+         |
+         v
++-------------------+
+| Reset Password    |
+| POST /api/auth/reset-password |
++-------------------+
+         |
+         v
++-----------------------------+
+| Validate Token & Expiry     |
++-----------------------------+
+         |
+         v
++-----------------------------+
+| Update Password             |
++-----------------------------+
+         |
+         v
++-----------------------------+
+| Return: Password Reset      |
++-----------------------------+
+
+         |
+         v
++-------------------+
+| Resend Verification Code    |
+| POST /api/auth/resend-verification-code |
++-------------------+
+         |
+         v
++-----------------------------+
+| Generate New Code           |
++-----------------------------+
+         |
+         v
++-----------------------------+
+| Send Verification Email     |
++-----------------------------+
+         |
+         v
++-----------------------------+
+| Return: Code Sent           |
++-----------------------------+
+```
+
+**Endpoints Reference:**
+- Signup: `POST /api/auth/signup`
+- Verify Email: `POST /api/auth/verify-email`
+- Login: `POST /api/auth/login`
+- Resend Verification Code: `POST /api/auth/resend-verification-code`
+- Forgot Password: `POST /api/auth/forgot-password`
+- Reset Password: `POST /api/auth/reset-password`
+
+Each endpoint expects and returns JSON. See the controller for request/response details.
+
+---
+
 ## Swagger & OpenAPI Docs
 
 - **GET /swagger**: Returns OpenAPI docs (JSON)

@@ -109,8 +109,13 @@ export default class AuthController {
       user.emailVerificationCodeExpires = null
       await user.save()
 
+      // Generate access token after verification
+      const token = await User.accessTokens.create(user)
+
       return response.ok({ 
-        message: 'Email verified successfully' 
+        message: 'Email verified successfully',
+        token: token.toJSON(),
+        user: user.serialize()
       })
     } catch (error) {
       return response.badRequest({ 

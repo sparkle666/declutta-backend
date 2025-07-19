@@ -4,6 +4,7 @@ GET http://localhost:3333/api/categories
 ### Create a new category
 POST http://localhost:3333/api/categories
 Content-Type: application/json
+Authorization: Bearer oat_NDM.bVFUUmN5dVlSbXk3LXJzY2VDVjFBczRJSmFmaTJNRFg5NURVOGlmdDMzNTIyNjM0NDk
 
 {
   "categoryName": "Electronics"

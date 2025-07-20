@@ -13,8 +13,15 @@ export default class Want extends BaseModel {
   declare name: string
 
   @column({
-  prepare: (value: string[]) => JSON.stringify(value),
-  consume: (value: string) => value ? JSON.parse(value) : [],
+    prepare: (value: string[] | string) => {
+      if (Array.isArray(value)) return JSON.stringify(value)
+      throw new Error('Invalid keywords format: expected array')
+    },
+    consume: (value: string) => {
+      const parsed = JSON.parse(value)
+      if (!Array.isArray(parsed)) throw new Error('Invalid keywords JSON')
+      return parsed
+    },
   })
   declare keywords: string[]
 

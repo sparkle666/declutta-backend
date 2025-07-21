@@ -13,17 +13,11 @@ export default class Want extends BaseModel {
   declare name: string
 
   @column({
-    prepare: (value: string[] | string) => {
-      if (Array.isArray(value)) return JSON.stringify(value)
-      throw new Error('Invalid keywords format: expected array')
-    },
-    consume: (value: string) => {
-      const parsed = JSON.parse(value)
-      if (!Array.isArray(parsed)) throw new Error('Invalid keywords JSON')
-      return parsed
-    },
+    prepare: (value: any) => value, // ✅ Insert as-is (array)
+    consume: (value: any) => value, // ✅ Don't parse it, Postgres already returns JSON
   })
   declare keywords: string[]
+
 
   @column()
   declare userId: number

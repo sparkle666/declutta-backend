@@ -31,12 +31,11 @@ export default class UsersController {
     public async update({ request, response, params }: HttpContext) {
         try {
           const userId = params.id
-          // Do not allow email to be updated for security/auth reasons
+          // Do not allow email and role to be updated for security/auth reasons
           const data = request.only([
             'fullName',
             'firstName',
             'lastName',
-            'role',
             'bio',
             'gender',
             'dateOfBirth',

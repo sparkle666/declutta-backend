@@ -1,5 +1,6 @@
 // app/controllers/UsersController.ts
 import User from '#models/user'
+import { put } from '@vercel/blob'
 import { HttpContext } from '@adonisjs/core/http'
 
 
@@ -9,7 +10,13 @@ export default class UsersController {
     public async index({ response }: HttpContext) {
       try {
         const users = await User.query()
-        .select('id', 'fullName', 'firstName', 'lastName', 'email', 'isEmailVerified', 'createdAt')
+        .select('id', 'fullName', 'firstName', 'lastName', 'email', 
+            'bio',
+            'gender',
+            'dateOfBirth',
+            'phoneNumber',
+            'isEmailVerified',
+            'createdAt')
         .preload('products', (productQuery) => {
           productQuery
             .select('id', 'productName', 'productPrice', 'productLocation')
@@ -39,11 +46,30 @@ export default class UsersController {
             'bio',
             'gender',
             'dateOfBirth',
-            'phoneNumber'
+            'phoneNumber',
+            'profilePicture'
           ])
 
-          const user = await User.findOrFail(userId)
+          // Handle profile picture upload if file is present
+          const profilePictureFile = request.file('profilePicture')
+          let profilePictureUrl = null
+          if (profilePictureFile) {
+            // Read file buffer from tmpPath
+            const fs = await import('fs/promises')
+            const fileBuffer = await fs.readFile(profilePictureFile.tmpPath!)
+            const now = new Date()
+            const dateStr = now.toISOString().split('T')[0]
+            const blobName = `profile-pictures/user-${userId}-${dateStr}-${profilePictureFile.clientName}`
+            const result = await put(blobName, fileBuffer, {
+              access: 'public',
+              token: process.env.BLOB_READ_WRITE_TOKEN,
+              addRandomSuffix: true,
+            })
+            profilePictureUrl = result.url
+            data.profilePicture = profilePictureUrl
+          }
 
+          const user = await User.findOrFail(userId)
           user.merge(data)
           await user.save()
 
@@ -65,17 +91,32 @@ export default class UsersController {
       public async getUserById({ params, response }: HttpContext) {
         try {
           const user = await User.query()
-            .select('id', 'fullName', 'firstName', 'lastName', 'email', 'isEmailVerified', 'createdAt')
+            .select(
+              'id',
+              'fullName',
+              'firstName',
+              'lastName',
+              'email',
+              'bio',
+              'gender',
+              'dateOfBirth',
+              'phoneNumber',
+              'profilePicture',
+              'role',
+              'isEmailVerified',
+              'createdAt',
+              'updatedAt'
+            )
             .where('id', params.id)
             .first()
-      
+
           if (!user) {
             return response.status(404).json({
               status: 'error',
               message: 'User not found.',
             })
           }
-      
+
           return response.json(user)
         } catch (error) {
           return response.status(500).json({

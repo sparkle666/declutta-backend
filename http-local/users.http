@@ -1,15 +1,15 @@
 ### Get all users
 GET http://localhost:3333/api/users
-Authorization: Bearer dummy_token
+Authorization: Bearer oat_MzY.bDJ5Z2F6bFh0TGRjOGQ1TDhMc2QwS2RqTHFvZjRVUTFXNUs3TTJvaDM2MTcyMTcxNjU
 
 ### Get a user by ID
-GET http://localhost:3333/api/users/1
-Authorization: Bearer dummy_token
+GET http://localhost:3333/api/users/32
+Authorization: Bearer oat_MzY.bDJ5Z2F6bFh0TGRjOGQ1TDhMc2QwS2RqTHFvZjRVUTFXNUs3TTJvaDM2MTcyMTcxNjU
 
 ### Update a user by ID
 PUT http://localhost:3333/api/users/1
 Content-Type: application/json
-Authorization: Bearer dummy_token
+Authorization: Bearer oat_MzY.bDJ5Z2F6bFh0TGRjOGQ1TDhMc2QwS2RqTHFvZjRVUTFXNUs3TTJvaDM2MTcyMTcxNjU
 
 {
   "email": "updateduser@example.com",
@@ -19,3 +19,44 @@ Authorization: Bearer dummy_token
   "lastName": "User",
   "isEmailVerified": true
 }
+
+
+### Update a user by ID with multipart/form-data
+PUT http://localhost:3333/api/users/32
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Authorization: Bearer oat_MzY.bDJ5Z2F6bFh0TGRjOGQ1TDhMc2QwS2RqTHFvZjRVUTFXNUs3TTJvaDM2MTcyMTcxNjU
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="fullName"
+
+Updated User Name
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="firstName"
+
+Updated
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="lastName"
+
+User
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="bio"
+
+This is my new bio.
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="gender"
+
+male
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="dateOfBirth"
+
+1990-01-01
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="phoneNumber"
+
++1234567890
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="profilePicture"; filename="profile.jpg"
+Content-Type: image/jpeg
+
+< ./shipping.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--

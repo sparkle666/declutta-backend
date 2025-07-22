@@ -31,14 +31,23 @@ export default class UsersController {
     public async update({ request, response, params }: HttpContext) {
         try {
           const userId = params.id
-          const data = request.only(['fullName', 'firstName', 'lastName', 'email', 'role'])
-    
+          // Do not allow email to be updated for security/auth reasons
+          const data = request.only([
+            'fullName',
+            'firstName',
+            'lastName',
+            'role',
+            'bio',
+            'gender',
+            'dateOfBirth',
+            'phoneNumber'
+          ])
+
           const user = await User.findOrFail(userId)
-    
-          // ✅ Only update fields that are provided
+
           user.merge(data)
           await user.save()
-    
+
           return response.json({
             status: 'success',
             message: 'User updated successfully.',

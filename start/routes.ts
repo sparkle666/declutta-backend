@@ -1,3 +1,6 @@
+
+
+// V2 Products endpoint (JSON with image URLs)
 import AutoSwagger from 'adonis-autoswagger'
 import swagger from '#config/swagger'
 import router from '@adonisjs/core/services/router'
@@ -20,8 +23,12 @@ const BackupsController = () => import('#controllers/backups_controller')
 const CheckoutController = () => import('#controllers/checkout_controller')
 
 
+
 // Controller imports (lazy-loaded)
 const AuthController = () => import('#controllers/auth_controller')
+
+// V2 Products endpoint (JSON with image URLs)
+// router.post('/v2/products', [ProductsController, 'storeV2']).use(middleware.auth({ guards: ['api'] }))
 
 // Root route
 router.get('/', () => {
@@ -69,6 +76,7 @@ router.group(() => {
   router.post('/products', [ProductsController, 'store'])
   router.put('/products/:id', [ProductsController, 'update'])
   router.delete('/products/:id', [ProductsController, 'destroy'])
+  router.post('/v2/products', [ProductsController, 'storeV2'])
 
   // Reviews
   router.post('/reviews', [ReviewsController, 'store'])

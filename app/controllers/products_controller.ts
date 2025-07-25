@@ -90,6 +90,47 @@ export default class ProductsController {
       product,
     })
   }
+
+
+  // In ProductsController.ts
+
+  public async storeV2({ request, response, auth }: HttpContext) {
+    const user = auth.user
+    if (!user) {
+      return response.unauthorized({
+        status: 'error',
+        message: 'You must be logged in to access this resource.',
+        code: 'UNAUTHORIZED'
+      })
+    }
+
+    // Accept imageUrls as an array of strings in the request body
+    const data = await request.validateUsing(productValidator)
+    const imageUrls: string[] = request.input('imageUrls', [])
+
+    if (!Array.isArray(imageUrls) || imageUrls.length === 0) {
+      return response.badRequest({
+        status: 'error',
+        message: 'At least one image URL is required to create a product.'
+      })
+    }
+
+    // Create the product
+    const product = await Product.create({ ...data, listedBy: user.id })
+
+    // Save image URLs in the database
+    for (const url of imageUrls) {
+      await product.related('images').create({ imageUrl: url })
+    }
+
+    await product.load('images')
+
+    return response.created({
+      status: 'success',
+      message: 'Product created successfully with images',
+      product,
+    })
+  }
   
 
   public async show({ params, response }: HttpContext) {

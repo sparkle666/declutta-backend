@@ -99,6 +99,28 @@ Authorization: Bearer oat_MQ.Tm1wMUZRdWl3Y0dBR3NLMFVISGlmc0JXR25lZFRneXUtNllEQzU
   "categoryId": 1
 }
 
+### Create a new product with JSON payload
+POST http://localhost:3333/api/v2/products
+Content-Type: application/json
+Authorization: Bearer oat_MzY.bDJ5Z2F6bFh0TGRjOGQ1TDhMc2QwS2RqTHFvZjRVUTFXNUs3TTJvaDM2MTcyMTcxNjU
+
+{
+  "productName": "Sample Json",
+  "productLocation": "Lagos",
+  "productStatus": "available",
+  "listedBy": 1,
+  "productPrice": 99.99,
+  "productDetails": "A test product",
+  "isFree": false,
+  "isForSale": true,
+  "categoryId": 17,
+  "condition": "used",
+  "imageUrls": [
+    "https://your-vercel-blob-url/image1.jpg",
+    "https://your-vercel-blob-url/image2.jpg"
+  ]
+}
+
 ### Delete a product by ID
 DELETE http://localhost:3333/api/products/1
 Authorization: Bearer oat_MQ.Tm1wMUZRdWl3Y0dBR3NLMFVISGlmc0JXR25lZFRneXUtNllEQzUxMzExNjcwMzI1ODk

@@ -1,19 +1,19 @@
 ### Get all conversations for the authenticated user
 GET http://localhost:3333/api/chats/conversations
-Authorization: Bearer oat_MQ.Tm1wMUZRdWl3Y0dBR3NLMFVISGlmc0JXR25lZFRneXUtNllEQzUxMzExNjcwMzI1ODk
+Authorization: Bearer oat_MzY.bDJ5Z2F6bFh0TGRjOGQ1TDhMc2QwS2RqTHFvZjRVUTFXNUs3TTJvaDM2MTcyMTcxNjU
 
 ### Get all messages between authenticated user and another user
-GET http://localhost:3333/api/chats?userId=2
-Authorization: Bearer oat_MQ.Tm1wMUZRdWl3Y0dBR3NLMFVISGlmc0JXR25lZFRneXUtNllEQzUxMzExNjcwMzI1ODk
+GET http://localhost:3333/api/chats?userId=31
+Authorization: Bearer oat_MzY.bDJ5Z2F6bFh0TGRjOGQ1TDhMc2QwS2RqTHFvZjRVUTFXNUs3TTJvaDM2MTcyMTcxNjU
 
 ### Send a new message
 POST http://localhost:3333/api/chats
 Content-Type: application/json
-Authorization: Bearer oat_MQ.Tm1wMUZRdWl3Y0dBR3NLMFVISGlmc0JXR25lZFRneXUtNllEQzUxMzExNjcwMzI1ODk
+Authorization: Bearer oat_MzY.bDJ5Z2F6bFh0TGRjOGQ1TDhMc2QwS2RqTHFvZjRVUTFXNUs3TTJvaDM2MTcyMTcxNjU
 
 {
-  "receiverId": 1,
-  "message": "Hello, how much for the shoes?"
+  "receiverId": 39,
+  "message": "This should come first?"
 }
 
 ### Mark all messages from a user as read

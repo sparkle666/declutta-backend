@@ -1,35 +1,10 @@
+
 import type { HttpContext } from '@adonisjs/core/http'
 import ChatMessage from '#models/chat_message'
 import User from '#models/user'
 import { chatMessageValidator } from '#validators/ChatMessageValidator'
 
-/**
- * ChatMessagesController handles user-to-user chat messaging.
- *
- * - All endpoints require authentication.
- * - Users can send and receive text messages with each other.
- * - All operations are scoped to the authenticated user.
- *
- * Endpoints:
- *   GET    /api/chats/conversations      - List all conversations (latest message per user)
- *   GET    /api/chats?userId=2          - Get all messages between authenticated user and another user
- *   POST   /api/chats                   - Send a new message
- *   POST   /api/chats/mark-as-read      - Mark all messages from a user as read
- *
- * Request body for sending a message:
- *   {
- *     receiverId: number,   // Required, user ID of the recipient
- *     message: string       // Required, 1-1000 chars
- *   }
- *
- * Request body for mark-as-read:
- *   {
- *     userId: number        // Required, user ID whose messages to mark as read
- *   }
- *
- * Responses:
- *   200 OK, 201 Created, 400 Bad Request, 401 Unauthorized, 404 Not Found
- */
+
 export default class ChatMessagesController {
   // List all conversations for the authenticated user (latest message per user)
   public async conversations({ auth, response }: HttpContext) {
@@ -48,7 +23,25 @@ export default class ChatMessagesController {
         conversations[partnerId] = msg
       }
     }
-    return response.json(Object.values(conversations))
+    const partnerIds = Object.keys(conversations).map(Number)
+    // Fetch all partner user details in one query
+    let usersById: Record<number, any> = {}
+    if (partnerIds.length > 0) {
+      const users = await User.query()
+        .whereIn('id', partnerIds)
+        .select('id', 'fullName', 'firstName', 'lastName', 'profilePicture', 'email', 'bio', 'gender', 'dateOfBirth', 'phoneNumber', 'isEmailVerified', 'createdAt')
+      usersById = users.reduce((acc, user) => {
+        acc[user.id] = user
+        return acc
+      }, {} as Record<number, any>)
+    }
+    // Return array of conversations with partner user details
+    const result = Object.entries(conversations).map(([partnerId, msg]) => ({
+      partnerId: Number(partnerId),
+      message: msg,
+      user: usersById[Number(partnerId)] || null
+    }))
+    return response.json(result)
   }
 
   // Get all messages between the authenticated user and another user
@@ -58,6 +51,7 @@ export default class ChatMessagesController {
     if (!otherUserId) {
       return response.badRequest({ message: 'userId is required' })
     }
+    // Fetch messages between the two users
     const messages = await ChatMessage.query()
       .where((query) => {
         query
@@ -70,7 +64,21 @@ export default class ChatMessagesController {
           .where('receiver_id', userId)
       })
       .orderBy('created_at', 'asc')
-    return response.json(messages)
+
+    // Fetch the other user's profile (select only important fields)
+    const otherUser = await User.query()
+      .select('id', 'fullName', 'firstName', 'lastName', 'profilePicture', 'email', 'bio', 'gender', 'dateOfBirth', 'phoneNumber', 'isEmailVerified', 'createdAt')
+      .where('id', otherUserId)
+      .first()
+
+    if (!otherUser) {
+      return response.notFound({ message: 'Other user not found' })
+    }
+
+    return response.json({
+      messages,
+      otherUser
+    })
   }
 
   // Send a new message
@@ -107,4 +115,25 @@ export default class ChatMessagesController {
       .update({ isRead: true })
     return response.ok({ message: 'Messages marked as read' })
   }
+  // Mark a single message as read
+  public async markMessageAsRead({ auth, params, response }: HttpContext) {
+    const userId = auth.user!.id
+    const messageId = Number(params.id)
+    if (!messageId) {
+      return response.badRequest({ message: 'Message ID is required' })
+    }
+    const message = await ChatMessage.find(messageId)
+    if (!message) {
+      return response.notFound({ message: 'Message not found' })
+    }
+    // Only the receiver can mark as read
+    if (message.receiverId !== userId) {
+      return response.forbidden({ message: 'You are not allowed to mark this message as read' })
+    }
+    message.isRead = true
+    await message.save()
+    return response.ok({ message: 'Message marked as read', chatMessage: message })
+  }
+
+  
 }

@@ -1,8 +1,6 @@
 // app/controllers/UsersController.ts
 import User from '#models/user'
-import { put } from '@vercel/blob'
 import { HttpContext } from '@adonisjs/core/http'
-
 
 
 export default class UsersController {
@@ -47,26 +45,14 @@ export default class UsersController {
             'gender',
             'dateOfBirth',
             'phoneNumber',
-            'profilePicture'
+            'profilePicture' // This should be a URL string
           ])
 
-          // Handle profile picture upload if file is present
-          const profilePictureFile = request.file('profilePicture')
-          let profilePictureUrl = null
-          if (profilePictureFile) {
-            // Read file buffer from tmpPath
-            const fs = await import('fs/promises')
-            const fileBuffer = await fs.readFile(profilePictureFile.tmpPath!)
-            const now = new Date()
-            const dateStr = now.toISOString().split('T')[0]
-            const blobName = `profile-pictures/user-${userId}-${dateStr}-${profilePictureFile.clientName}`
-            const result = await put(blobName, fileBuffer, {
-              access: 'public',
-              token: process.env.BLOB_READ_WRITE_TOKEN,
-              addRandomSuffix: true,
-            })
-            profilePictureUrl = result.url
-            data.profilePicture = profilePictureUrl
+          // Accept profilePicture as a URL string only
+          let profilePictureUrl = data.profilePicture || null
+          // Optionally, validate that it's a URL string
+          if (profilePictureUrl && typeof profilePictureUrl !== 'string') {
+            return response.badRequest({ status: 'error', message: 'profilePicture must be a URL string.' })
           }
 
           const user = await User.findOrFail(userId)
@@ -76,7 +62,7 @@ export default class UsersController {
           return response.json({
             status: 'success',
             message: 'User updated successfully.',
-            user
+            profilePicture: user.profilePicture // Return just the URL string for display
           })
         } catch (error) {
           return response.status(500).json({

@@ -106,6 +106,7 @@ router.group(() => {
   router.get('/chats', [ChatMessagesController, 'index']) // ?userId=otherUserId
   router.post('/chats', [ChatMessagesController, 'store'])
   router.post('/chats/mark-as-read', [ChatMessagesController, 'markAsRead'])
+  router.post('/chats/:id/mark-as-read', [ChatMessagesController, 'markMessageAsRead'])
 
   // Bank Accounts
   router.get('/bank-accounts', [BankAccountsController, 'index'])

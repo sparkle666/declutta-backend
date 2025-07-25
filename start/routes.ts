@@ -85,6 +85,8 @@ router.group(() => {
 
   // Images
   router.post('/images', [ImagesController, 'store'])
+  router.post('/vercel/upload/images', [ImagesController, 'uploadImages'])
+  router.post('/vercel/upload/image', [ImagesController, 'uploadImage'])
   router.delete('/images/:id', [ImagesController, 'destroy'])
 
   // Favourite Products

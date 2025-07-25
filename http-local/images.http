@@ -10,6 +10,36 @@ Content-Type: image/png
 < ./test.png
 ------WebKitFormBoundary7MA4YWxkTrZu0gW--
 
+
+### Upload a single image to Vercel Blob
+POST http://localhost:3333/api/vercel/upload/image
+Authorization: Bearer oat_MzY.bDJ5Z2F6bFh0TGRjOGQ1TDhMc2QwS2RqTHFvZjRVUTFXNUs3TTJvaDM2MTcyMTcxNjU
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="image"; filename="test.png"
+Content-Type: image/png
+
+< ./shipping.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+### Upload multiple images to Vercel Blob
+POST http://localhost:3333/api/vercel/upload/images
+Authorization: Bearer oat_MzY.bDJ5Z2F6bFh0TGRjOGQ1TDhMc2QwS2RqTHFvZjRVUTFXNUs3TTJvaDM2MTcyMTcxNjU
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="test1.png"
+Content-Type: image/png
+
+< ./shipping.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="test2.jpg"
+Content-Type: image/jpeg
+
+< ./shipping.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
 ### Delete an image by ID
 DELETE http://localhost:3333/api/images/1
 Authorization: oat_MQ.Tm1wMUZRdWl3Y0dBR3NLMFVISGlmc0JXR25lZFRneXUtNllEQzUxMzExNjcwMzI1ODk

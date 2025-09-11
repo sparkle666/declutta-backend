@@ -13,6 +13,23 @@ export default class HttpExceptionHandler extends ExceptionHandler {
    * response to the client
    */
   async handle(error: unknown, ctx: HttpContext) {
+    // Handle validation errors
+    if (error && typeof error === 'object' && 'code' in error) {
+      // @ts-ignore
+      if (error.code === 'E_VALIDATION_FAILURE') {
+        // @ts-ignore
+        return ctx.response.status(422).send({
+          message: error.message,
+          errors: error.messages,
+        })
+      }
+      // @ts-ignore
+      if (error.code === 'E_ROW_NOT_FOUND') {
+        return ctx.response.status(404).send({
+          message: 'Resource not found',
+        })
+      }
+    }
     return super.handle(error, ctx)
   }
 

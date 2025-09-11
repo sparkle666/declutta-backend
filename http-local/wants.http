@@ -8,8 +8,8 @@ Content-Type: application/json
 Authorization: Bearer oat_NDM.bVFUUmN5dVlSbXk3LXJzY2VDVjFBczRJSmFmaTJNRFg5NURVOGlmdDMzNTIyNjM0NDk
 
 {
-  "name": "Phone",
-  "keywords": ["phone", "electronics", "mobile"]
+  "name": "Cars",
+  "keywords": ["cars", "automobile", "vehicle"]
 }
 
 ### Get a want by ID

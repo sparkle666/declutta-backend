@@ -7,8 +7,9 @@ export const productValidator = vine.compile(
     productStatus: vine.enum(['available', 'sold', 'in stock']),
     productPrice: vine.number().min(0).max(1000000),
     productDetails: vine.string().trim().maxLength(500).optional(),
-    isFree: vine.boolean().optional(),
-    isForSale: vine.boolean().optional(),
+  isFree: vine.boolean().optional(),
+  isForSale: vine.boolean().optional(),
+  saleType: vine.enum(['free', 'for_sale']).optional(),
     categoryId: vine.number().exists(async (db, value) => {
       // IMPORTANT: Execute the query and check for existence within the callback
 

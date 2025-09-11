@@ -38,6 +38,9 @@ export default class Product extends BaseModel {
   declare isForSale: boolean
 
   @column()
+  declare saleType: 'free' | 'for_sale'
+
+  @column()
   declare categoryId: number
 
   @column()
@@ -48,6 +51,15 @@ export default class Product extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime
+
+  @column()
+  declare buyerId: number | null
+
+  @column()
+  declare isSold: boolean
+
+  @belongsTo(() => User, { foreignKey: 'buyerId' })
+  public buyer!: BelongsTo<typeof User>
 
   @belongsTo(() => Category, {
     foreignKey: 'categoryId',

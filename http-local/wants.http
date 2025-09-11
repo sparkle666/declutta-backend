@@ -1,25 +1,25 @@
 ### Get all wants
 GET http://localhost:3333/api/wants
-Authorization: Bearer oat_MQ.Tm1wMUZRdWl3Y0dBR3NLMFVISGlmc0JXR25lZFRneXUtNllEQzUxMzExNjcwMzI1ODk
+Authorization: Bearer oat_NDM.bVFUUmN5dVlSbXk3LXJzY2VDVjFBczRJSmFmaTJNRFg5NURVOGlmdDMzNTIyNjM0NDk
 
 ### Create a new want
 POST http://localhost:3333/api/wants
 Content-Type: application/json
-Authorization: Bearer oat_MQ.Tm1wMUZRdWl3Y0dBR3NLMFVISGlmc0JXR25lZFRneXUtNllEQzUxMzExNjcwMzI1ODk
+Authorization: Bearer oat_NDM.bVFUUmN5dVlSbXk3LXJzY2VDVjFBczRJSmFmaTJNRFg5NURVOGlmdDMzNTIyNjM0NDk
 
 {
-  "name": "I want a new phone",
+  "name": "Phone",
   "keywords": ["phone", "electronics", "mobile"]
 }
 
 ### Get a want by ID
 GET http://localhost:3333/api/wants/1
-Authorization: Bearer oat_MQ.Tm1wMUZRdWl3Y0dBR3NLMFVISGlmc0JXR25lZFRneXUtNllEQzUxMzExNjcwMzI1ODk
+Authorization: Bearer oat_NDM.bVFUUmN5dVlSbXk3LXJzY2VDVjFBczRJSmFmaTJNRFg5NURVOGlmdDMzNTIyNjM0NDk
 
 ### Update a want by ID
 PUT http://localhost:3333/api/wants/1
 Content-Type: application/json
-Authorization: Bearer oat_MQ.Tm1wMUZRdWl3Y0dBR3NLMFVISGlmc0JXR25lZFRneXUtNllEQzUxMzExNjcwMzI1ODk
+Authorization: Bearer oat_NDM.bVFUUmN5dVlSbXk3LXJzY2VDVjFBczRJSmFmaTJNRFg5NURVOGlmdDMzNTIyNjM0NDk
 
 {
   "name": "Updated want name",
@@ -29,4 +29,4 @@ Authorization: Bearer oat_MQ.Tm1wMUZRdWl3Y0dBR3NLMFVISGlmc0JXR25lZFRneXUtNllEQzU
 
 ### Delete a want by ID
 DELETE http://localhost:3333/api/wants/1
-Authorization: Bearer oat_MQ.Tm1wMUZRdWl3Y0dBR3NLMFVISGlmc0JXR25lZFRneXUtNllEQzUxMzExNjcwMzI1ODk
+Authorization: Bearer oat_NDM.bVFUUmN5dVlSbXk3LXJzY2VDVjFBczRJSmFmaTJNRFg5NURVOGlmdDMzNTIyNjM0NDk

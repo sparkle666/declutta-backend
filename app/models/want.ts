@@ -10,10 +10,7 @@ export default class Want extends BaseModel {
   @column()
   declare name: string
 
-  @column({
-    prepare: (value: string[]) => JSON.stringify(value), // Serialize array to JSON string
-    consume: (value: string) => (value ? JSON.parse(value) : []), // Parse JSON string to array
-  })
+  @column()
   declare keywords: string[]
 
   @column()

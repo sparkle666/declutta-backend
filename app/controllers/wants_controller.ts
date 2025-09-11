@@ -43,10 +43,13 @@ export default class WantsController {
   public async store({ request, response, auth }: HttpContext) {
     try {
       const data = await request.validateUsing(wantValidator)
+      console.log('Validated data:', data)
+
       const user = auth.user!
       const want = await Want.create({ ...data, userId: user.id })
       return response.created(want)
     } catch (error) {
+      console.error('Error creating want:', error)
       return response.status(400).json({ message: 'Failed to create want', error: error.message })
     }
   }

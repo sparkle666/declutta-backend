@@ -1,7 +1,5 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column, belongsTo } from '@adonisjs/lucid/orm'
-
-// ✅ Use `import type` for TypeScript type-only imports
 import type { BelongsTo } from '@adonisjs/lucid/types/relations'
 import User from './user.js'
 
@@ -13,17 +11,10 @@ export default class Want extends BaseModel {
   declare name: string
 
   @column({
-    prepare: (value: any) => value, // ✅ Insert as-is (array)
-    consume: (value: any) => value, // ✅ Don't parse it, Postgres already returns JSON
+    prepare: (value: string[]) => JSON.stringify(value), // Serialize array to JSON string
+    consume: (value: string) => (value ? JSON.parse(value) : []), // Parse JSON string to array
   })
   declare keywords: string[]
-
-  // @column({
-  // prepare: (value: string[]) => JSON.stringify(value),
-  // consume: (value: string) => value ? JSON.parse(value) : [],
-  // })
-  // declare keywords: string[]
-
 
   @column()
   declare userId: number

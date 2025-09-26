@@ -6,14 +6,21 @@ import OrderItem from './order_item.js'
 
 
 export default class Order extends BaseModel {
+  @column()
+  declare transaction: string | null
+  
   @column({ isPrimary: true })
   declare id: number
 
   @column()
   declare userId: number
 
+  // This should be payment status
   @column()
-  declare status: 'pending' | 'paid' | 'failed'
+  declare paymentStatus: 'pending' | 'paid' | 'failed' | 'completed'
+  
+  @column()
+  declare orderStatus: 'sent' | 'cancelled' | 'enroute' | 'received' | 'pending'
 
   @column()
   declare total: number
@@ -31,5 +38,5 @@ export default class Order extends BaseModel {
   declare user: BelongsTo<typeof User>
 
   @hasMany(() => OrderItem)
-  declare items: HasMany<typeof OrderItem>
+  declare orderItems: HasMany<typeof OrderItem>
 }

@@ -21,8 +21,11 @@ const ShippingAddressesController = () => import('#controllers/shipping_addresse
 const NotificationsController = () => import('#controllers/notifications_controller')
 const BackupsController = () => import('#controllers/backups_controller')
 const CheckoutController = () => import('#controllers/checkout_controller')
+const OrdersController = () => import('#controllers/orders_controller')
 
 
+
+console.log('Paystack Test Secret Key:', process.env.PAYSTACK_TEST_SECRET_KEY)
 
 // Controller imports (lazy-loaded)
 const AuthController = () => import('#controllers/auth_controller')
@@ -37,6 +40,9 @@ router.get('/', () => {
 
 // Public routes (no auth required)
 router.group(() => {
+  // Paystack verification
+  router.post('/orders/verify-paystack', [() => import('#controllers/orders_controller'), 'verifyPaystack'])
+  
   router.get('/categories', [CategoriesController, 'index'])
   router.get('/categories/:id', [CategoriesController, 'show'])
   router.get('/products', [ProductsController, 'index'])
@@ -135,11 +141,17 @@ router.group(() => {
   router.post('/notifications/:id/read', [NotificationsController, 'markAsRead'])
   router.post('/notifications', [NotificationsController, 'store'])
   router.delete('/notifications/:id', [NotificationsController, 'destroy'])
+  // Orders (multi-product checkout, history, update, show)
+  router.get('/orders', [OrdersController, 'index'])
+  router.post('/orders', [OrdersController, 'store'])
+  router.put('/orders/:id', [OrdersController, 'update'])
+  router.get('/orders/:id', [OrdersController, 'show'])
 
   // Checkout
-  router.post('/checkout', [CheckoutController, 'checkout'])
-  router.post('/paystack/webhook', [CheckoutController, 'paystackWebhook'])
-  router.get('/orders/:id', [CheckoutController, 'show'])
+  // router.post('/checkout', [CheckoutController, 'checkout'])
+  // router.post('/paystack/webhook', [CheckoutController, 'paystackWebhook'])
+  // router.get('/orders/:id', [CheckoutController, 'show'])
+
 
   // Backup DB
 })

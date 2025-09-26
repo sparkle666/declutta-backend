@@ -1,0 +1,41 @@
+### Get all orders (order history)
+GET http://localhost:3333/api/orders
+Authorization: Bearer oat_NTM.U2haXzZBLTRJTzk4WkNmNlhMMWE0Qk5Ta08wQ2ZGUVQ0SXg0M3BBZzMwOTU0NTkxNTU
+
+### Create a new order (multi-product checkout)
+POST http://localhost:3333/api/orders
+Content-Type: application/json
+Authorization: Bearer oat_NTM.U2haXzZBLTRJTzk4WkNmNlhMMWE0Qk5Ta08wQ2ZGUVQ0SXg0M3BBZzMwOTU0NTkxNTU
+
+{
+  "products": [
+    { "productId": 2, "quantity": 1 },
+    { "productId": 3, "quantity": 1 },
+    { "productId": 4, "quantity": 1 }
+  ],
+  "reference": "paystack_ref_value"
+}
+
+### Get a single order by ID (if implemented)
+GET http://localhost:3333/api/orders/1
+Authorization: Bearer oat_NTM.U2haXzZBLTRJTzk4WkNmNlhMMWE0Qk5Ta08wQ2ZGUVQ0SXg0M3BBZzMwOTU0NTkxNTU
+
+### Update an order
+PUT http://localhost:3333/api/orders/1
+Content-Type: application/json
+Authorization: Bearer oat_NTM.U2haXzZBLTRJTzk4WkNmNlhMMWE0Qk5Ta08wQ2ZGUVQ0SXg0M3BBZzMwOTU0NTkxNTU
+
+{
+  "orderStatus": "enroute",
+  "paymentStatus": "paid",
+  "total": 5000
+}
+
+### Verify Paystack reference
+POST http://localhost:3333/api/orders/verify-paystack
+Content-Type: application/json
+Authorization: Bearer oat_NTM.U2haXzZBLTRJTzk4WkNmNlhMMWE0Qk5Ta08wQ2ZGUVQ0SXg0M3BBZzMwOTU0NTkxNTU
+
+{
+  "reference": "ref_1758887453795"
+}

@@ -30,12 +30,13 @@ export default await Env.create(new URL('../', import.meta.url),
   | Variables for configuring the mail package
   |----------------------------------------------------------
   */
+ 
   SMTP_HOST: Env.schema.string(),
   SMTP_PORT: Env.schema.string(),
 
   BLOB_READ_WRITE_TOKEN: Env.schema.string(),
-  PAYSTACK_SECRET_KEY: Env.schema.string(),
-  PAYSTACK_CALLBACK_URL: Env.schema.string(),
+  PAYSTACK_TEST_SECRET_KEY: Env.schema.string(),
+  // PAYSTACK_CALLBACK_URL: Env.schema.string(),
 
 }
 )

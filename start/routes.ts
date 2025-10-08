@@ -20,7 +20,7 @@ const CardsController = () => import('#controllers/cards_controller')
 const ShippingAddressesController = () => import('#controllers/shipping_addresses_controller')
 const NotificationsController = () => import('#controllers/notifications_controller')
 const BackupsController = () => import('#controllers/backups_controller')
-const CheckoutController = () => import('#controllers/checkout_controller')
+// const CheckoutController = () => import('#controllers/checkout_controller')
 const OrdersController = () => import('#controllers/orders_controller')
 
 

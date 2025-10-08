@@ -19,8 +19,8 @@ export default class HttpExceptionHandler extends ExceptionHandler {
       if (error.code === 'E_VALIDATION_FAILURE') {
         // @ts-ignore
         return ctx.response.status(422).send({
-          message: error.message,
-          errors: error.messages,
+          message: ((error as unknown) as { message: string }).message,
+          errors: ((error as unknown) as { messages: any }).messages,
         })
       }
       // @ts-ignore
